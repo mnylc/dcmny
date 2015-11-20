@@ -1,0 +1,83 @@
+Field Name,Label ,Repeatable,Required/Recommended/Optional,Definition,Recommended Vocab/Encoding,Instructions,MODS,DC
+Collection Description,Collection Description,No,Optional,,,,"<relatedItem type=""host"" displayLabel=""Collection""><abstract>",n/a
+Collection Title,Collection,No,Required,The collection to which a resource belongs. ,,,"<relatedItem type=""host"" displayLabel=""Collection""><titleInfo><title>",dcterms:IsPartOf
+,,,,,,,,
+Identifier,Local Identifier,Yes,Required,Contains a unique standard number or code that distinctively identifies a resource.,,Local identifier,"<identifier type=""local"">",dc:identifier
+Title,Title,No,Required,"A word, phrase, character, or group of characters, normally appearing in a resource, that names it or the work contained in it.",,Create title describing resource or transcribe from source.,<titleInfo><title>,dc:title
+Name-Personal ,Name,Yes,Recommended if applicable,"The name of a person, organization, or event (conference, meeting, etc.) associated in some way with the resource.",LCNAF,,"<name type=""personal""><namePart>",dc:creator or dc:contributor
+Name-Corporate,Name,Yes,Recommended if applicable,"The name of a person, organization, or event (conference, meeting, etc.) associated in some way with the resource.",LCNAF,,"<name type=""corporate""><namePart>",dc:creator or dc:contributor
+Creator-Personal,Creator,Yes,Recommended if applicable,Person responsible for creating original resource,LCNAF,"Enter in form last name, first name, middle name or initial (if known). Include birth and death dates if known.
+
+Check LCNAF (http://id.loc.gov/authorities/names.html) for form of name and use if present","<name type=""personal""> where <name> also contains <role><roleTerm type=""text"">creator</roleTerm></role>",dc:creator
+Creator-Corporate,Creator,Yes,Recommended if applicable,Corporate entity responsible for creating original resource,LCNAF,Check LCNAF (http://id.loc.gov/authorities/names.html) for form of name and use if present,"<name type=""corporate""> where <name> also contains <role><roleTerm type=""text"">creator</roleTerm></role>",dc:creator
+Contributor-Personal,Contributor,Yes,Recommended if applicable,Person who contributed to creation of original resource,LCNAF,"Enter in form last name, first name, middle name or initial (if known). May include birth and death dates if known.
+
+Check LCNAF (http://id.loc.gov/authorities/names.html) for form of name and use if present","<name type=""personal> where <name> also contains <role><roleTerm type=""text"">contributor</roleTerm></role>",dc:contributor
+Contributor-Corporate,Contributor,Yes,Recommended if applicable,Corporate entity who contributed to creation of resource,LCNAF,Check LCNAF (http://id.loc.gov/authorities/names.html) for form of name and use if present,"<name type=""corporate""> where <name> also contains <role><roleTerm type=""text"">contributor</roleTerm></role>",dc:contributor
+Role,Role,No,Recommended if applicable,Designates the relationship (role) of the entity recorded in name to the resource described in the record,MARC Relator List (http://id.loc.gov/vocabulary/relators.html),,<role><roleTerm,n/a
+Subject-Topic,Subject-Topic,Yes,Recommended,Topic represented by resource,FAST,"Terms should come from a controlled vocabulary, recommend FAST (http://fast.oclc.org/)",<subject><topic>,dc:subject
+Subject-Name-Personal,Name as Subject,Yes,Recommended,Person represented in or by the resource,FAST,"Names should come from a controlled vocabulary, recommend FAST (http://fast.oclc.org/)",<subject><name><namePart>,dc:subject
+Subject-Name-Corporate,Name as Subject,Yes,Recommended,Entity represented in or by the resource,FAST,"Names should come from a controlled vocabulary, recommend FAST (http://fast.oclc.org/)",<subject><name><namePart>,dc:subject
+Subject-Geographic,Location,Yes,Recommended ,Location represented in the resource,FAST,"Terms should come from a controlled vocabulary, recommend FAST (http://fast.oclc.org/) ",<subject><geographic>,dcterms:spatial
+Subject-Temporal,Time Period,Yes,Recommended,Time period represented in or by the resource,FAST,"Terms should come from a controlled vocabulary, recommend FAST (http://fast.oclc.org/",<subject><temporal>,dcterms:temporal
+Coordinates,Coordinates,Yes,Optional,A statement of coordinates covered by the resource,,Record as either a center point or a bounding box. ,"Center point: <subject><cartographics><coordinates>lat,long 
+
+Bounding box: MODS <extension> element using elements from FGDC-CSGDM",dccoverage:spatial
+Date Created,Date Created,Yes,Required if applicable,Date the resource was created,W3C-DTF,"Use for born-digital and unpublished or informally published materials. For reformatted material, use the date of the source resource, not the digital version
+
+W3C-DTF profile of ISO 8601 (http://www.w3.org/TR/NOTE-datetime)
+
+Enter in form YYYY-MM-DD, or for date ranges, YYYY-YYYY or YYYY-MM-DD/YYYY-MM-DD. Can be abbreviated to YYYY or YYYY-MM.
+
+For approximate dates, please use ""circa."" For questionable dates, please use a question mark following the date, i.e. 1985?. For inferred dates, please enclose the date in brackets, i.e. [1991]
+
+Express centuries as a date range, i.e. for ""19th century,"" use 1800-1899.
+
+For decades, i.e. ""1860s,"" express as a date range (1860-1869).",<originInfo><dateCreated>,dc:date
+Date Issued,Date Issued,Yes,Required if applicable,"Date that the resource was published, released, or issued",W3C-DTF,"Use for formally published material
+
+W3C-DTF profile of ISO 8601 (http://www.w3.org/TR/NOTE-datetime)
+
+Enter in form YYYY-MM-DD, or for date ranges, YYYY-YYYY or YYYY-MM-DD/YYYY-MM-DD
+
+For approximate dates, use ""circa."" For questionable dates, use a question mark following the date, i.e. 1985? For inferred dates, please enclose the date in brackets, i.e. [1991]
+
+Express centuries as a date range, i.e. for ""19th century,"" use 1800-1899. 
+
+For decades, i.e. ""1860s,"" express as a date range (1860-1869).",<originInfo><dateIssued>,dc:date
+Publisher ,Publisher,Yes,Optional,"The name of the entity that published, printed, distributed, released, issued, or produced the original resource.",LCNAF,"Check LCNAF (http://id.loc.gov/authorities/names.html) for form of name and use if present
+
+This is not the organization who digitized the resource",<originInfo><publisher>,dc:publisher
+Place of Publication,Place of Publication,Yes,Optional,"A place associated with the issuing, publication, release, distribution, manufacture, production, or origin of the resource.",,,"<originInfo><place><placeTerm type=""text"">",
+Description,Description,Yes,Recommended,"A summary of the content of the resource
+",,"Includes abstract, free-text account of resource, etc.",<abstract>,dc:description
+Note,Note,Yes,Recommended if applicable,General textual information relating to a resource.,,"""Catch-all"" element for information that does not fit elsewhere.",<note>,dc:description
+Type of Resource,Type,Yes,Required,"A term that specifies the characteristics and general type of content of the resource
+",MODS Type of Resource values,"Use default MODS Type of Resource values, http://www.loc.gov/standards/mods/userguide/typeofresource.html
+
+Ex.) still image",<typeOfResource>,dc:type
+Genre,Genre,Yes,Recommended,"A term or terms that designate a category characterizing a particular style, form,
+or content, such as artistic, musical, literary composition, etc.",AAT,"
+
+Prefer use of controlled vocabulary, recommend AAT (http://www.getty.edu/research/tools/vocabularies/aat/).",<genre>,dc:type
+Form,Form,Yes,Optional,"A designation of a particular physical presentation of a resource, including the physical form or medium of material for a resource.",,"
+
+Prefer use of controlled vocabulary, recommend LCGFT, http://id.loc.gov/authorities/genreForms.html",<physicalDescription><form>,dc:format
+Extent,Extent,Yes,Optional,A statement of the number and specific material of the units of the resource that express physical extent.,,Generally size or duration information,<physicalDescription><extent>,dcterms:extent
+Language,Language,Yes,Recommended if applicable,A description of the language in which the content of the resource is expressed,iso639-2b,"ISO 639-2 standard, three-letter codes. Strongly recommended for textual material.
+
+http://www.loc.gov/standards/iso639-2/php/code_list.php",<language><languageTerm>,dc:language
+Relation,Related Resource,Yes,Optional,Information that identifies other resources related to the one being described.,,,<relatedItem><titleInfo><title> or <relatedItem><location><url>,dc:relation
+Rights,Rights,Yes,Required,"Information about restrictions imposed on access to a resource
+",,"Can include links to policies/copyright information pages on institutional website, if applicable",<accessCondition>,dc:rights
+Owning Institution/Held By,Owning Institution,No,Required,The institution or repository that holds the original resource and/or where it is available.,LCNAF,"Prefer use of an authorized term, if available, check LCNAF (http://id.loc.gov/authorities/names.htm)","<note type=""ownership"">",
+,,,,,,,,
+Digital Format,Digital Format,Yes,Required,"An identification of the electronic format type, or the data representation of the resource.",IMT,"Internet Media Type (IMT) (http://www.iana.org/assignments/media-types/media-types.xhtml)
+
+The media type, followed by the file type.
+
+Ex.) image/jp2",<physicalDescription><internetMediaType>,dc:format
+Digital Origin,Digital Origin,No,Required,"The method by which a resource achieved digital form
+",MODS ,"4 valid MODS values: born digital, reformatted digital, digitized microfilm, digitized other analog",<physicalDescription><digitalOrigin>,
+,,,,,,,,
+File Name,n/a,No,Required,File name associated with digital resource,,"Must match associated resource exactly, and include file extension",,
