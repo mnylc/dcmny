@@ -1,0 +1,73 @@
+<!-- For Prefix -->
+ 
+<?xml version="1.0" encoding="UTF-8"?>
+<modsCollection xmlns="http://www.loc.gov/mods/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.loc.gov/mods/v3 http://www.loc.gov/standards/mods/v3/mods-3-4.xsd">
+ 
+<!-- For Row Template -->
+<mods xmlns="http://www.loc.gov/mods/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.loc.gov/mods/v3 http://www.loc.gov/standards/mods/v3/mods-3-4.xsd">
+	<titleInfo>
+		<title>{{(cells["Title"].value)}}</title>
+	</titleInfo>
+	<name type="personal">
+		<namePart>{{cells["Creator-Personal"].value)}}</namePart>
+			<role>
+				<roleTerm type="text">Creator</roleTerm>
+			</role>
+	</name>
+	<name type="personal">
+		<namePart>{{(cells["Contributor-Personal"].value)}}</namePart>
+		<role>
+			<roleTerm type="text">Contributor</roleTerm>
+		</role>
+	</name>
+	<subject>
+		<topic>{{(cells["Subject-Topic"].value)}}</topic>
+	</subject>
+	<subject>
+		<topic>{{(cells["Subject-Topic2"].value)}}</topic>
+	</subject>
+	<subject>
+		<topic>{{(cells["Subject-Topic3"].value)}}</topic>
+        </subject>
+	<subject>
+		<geographic>{{(cells["Subject-Geographic"].value)}}</geographic>
+	</subject>
+	<originInfo>
+		<dateCreated>{{cells["Date Created"].value)}}</dateCreated>
+	</originInfo>
+	<abstract>{{(cells["Description"].value)}}</abstract>
+	<note>{{(cells["Note"].value)}}</note>
+	<typeOfResource>{{(cells["Type of Resource"].value)}}</typeOfResource>
+	<genre>{{(cells["Genre"].value)}}</genre>
+	<physicalDescription>
+		<extent>{{(cells["Extent"].value)}}</extent>
+		<internetMediaType>{{(cells["Digital Format"].value)}}</internetMediaType>
+		<digitalOrigin>{{(cells["Digital Origin"].value)}}</digitalOrigin>
+	</physicalDescription>
+	<language>
+		<languageTerm>{{(cells["Language"].value)}}</languageTerm>
+	</language>
+	<accessCondition>{{(cells["Rights"].value)}}</accessCondition>
+	<relatedItem type="host" displayLabel="Collection">
+		<titleInfo>
+			<title>{{(cells["Collection Title"].value)}}</title>
+		</titleInfo>
+	</relatedItem>
+	<relatedItem type="host" displayLabel="Collection">
+		<abstract>{{(cells["Collection Description"].value)}}</abstract>
+	</relatedItem>
+	<note type="ownership">{{(cells["Owning Institution/Held By"].value)}}</note>
+	<identifier type="local">{{(cells["Identifier"].value)}}</identifier>
+	<recordInfo>
+		<languageOfCataloging>
+			<languageTerm>eng</languageTerm>
+		</languageOfCataloging>
+	</recordInfo>
+</mods>
+
+<!-- Don't put anything in Row Separator -->
+
+<!-- For Suffix -->
+
+</modsCollection>
+ 
