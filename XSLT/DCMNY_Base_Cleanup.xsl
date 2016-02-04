@@ -16,6 +16,8 @@
   <xsl:template match="mods:subject[mods:name/mods:namePart[text()='null']]"/>
   <xsl:template match="mods:subject[./mods:topic[./text()='null']]"/>
   <xsl:template match="mods:subject[mods:geographic[text()='null']]"/>
+  <xsl:template match="mods:subject[mods:temporal[text()='null']]"/>
+  
 
   <xsl:template match="mods:typeOfResource">
     <xsl:variable name="typelist" select="tokenize(., ';')"/>
