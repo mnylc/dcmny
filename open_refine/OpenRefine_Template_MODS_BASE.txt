@@ -10,10 +10,22 @@
 		<title>{{(cells["Title"].value)}}</title>
 	</titleInfo>
 	<name authority="naf" type="personal">
+		<namePart>{{(cells["Name-Personal"].value)}}</namePart>
+		<role>
+			<roleTerm authority="marcrelator" type="text">{{(cells["Role"].value)}}</roleTerm>
+		</role>
+	</name>
+	<name authority="naf" type="corporate">
+		<namePart>{{(cells["Name-Corporate"].value)}}</namePart>
+		<role>
+			<roleTerm authority="marcrelator" type="text">{{(cells["Role"].value)}}</roleTerm>
+		</role>
+	</name>
+	<name authority="naf" type="personal">
 		<namePart>{{(cells["Creator-Personal"].value)}}</namePart>
-			<role>
-				<roleTerm authority="marcrelator" type="text">Creator</roleTerm>
-			</role>
+		<role>
+			<roleTerm authority="marcrelator" type="text">Creator</roleTerm>
+		</role>
 	</name>
 	<name authority="naf" type="corporate">
 		<namePart>{{(cells["Creator-Corporate"].value)}}</namePart>
@@ -42,6 +54,16 @@
 		</name>
 	</subject>
 	<subject authority="fast">
+		<name type="personal">
+			<namePart>{{(cells["Subject-Name-Personal"].value)}}</namePart>
+		</name>
+	</subject>
+	subject authority="fast">
+		<name type="corporate">
+			<namePart>{{(cells["Subject-Name-Corporate"].value)}}</namePart>
+		</name>
+	</subject>
+	<subject authority="fast">
 		<geographic>{{(cells["Subject-Geographic"].value)}}</geographic>
 	</subject>
 	<subject authority="fast">
@@ -56,7 +78,9 @@
 		<dateCreated keyDate="yes" encoding="w3cdtf">{{(cells["Date Created"].value)}}</dateCreated>
 		<dateIssued keyDate="yes" encoding="w3cdtf">{{(cells["Date Issued"].value)}}</dateIssued>
 		<publisher>{{(cells["Publisher"].value)}}</publisher>
-		<place>{{(cells["Place of Publication"].value)}}</place>
+		<place>
+			<placeTerm type="text">{{(cells["Place of Publication"].value)}}</placeTerm>
+		</place>
 	</originInfo>
 	<abstract>{{(cells["Description"].value)}}</abstract>
 	<note>{{(cells["Note"].value)}}</note>
@@ -86,7 +110,7 @@
 	</relatedItem>
 	<accessCondition>{{(cells["Rights"].value)}}</accessCondition>
 	<note type="ownership">{{(cells["Owning Institution/Held By"].value)}}</note>
-	<identifier type="local">{{(cells["Local Identifier"].value)}}</identifier>
+	<identifier type="local">{{(cells["Identifier"].value)}}</identifier>
 	<recordInfo>
 		<languageOfCataloging>
 			<languageTerm type="code" authority="iso639-2b">eng</languageTerm>
