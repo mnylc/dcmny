@@ -65,6 +65,9 @@
 	</subject>
 	<subject authority="fast">
 		<geographic>{{(cells["Subject-Geographic"].value)}}</geographic>
+		cartographics>
+			<coordinates>{{(cells["Coordinates"].value)}}</coordinates>
+		</cartographics>
 	</subject>
 	<subject authority="fast">
 		<temporal>{{(cells["Subject-Temporal"].value)}}</temporal>
