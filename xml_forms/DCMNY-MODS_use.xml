@@ -4,9 +4,9 @@
     <root_name>mods</root_name>
     <schema_uri/>
     <namespaces default="http://www.loc.gov/mods/v3">
+      <namespace prefix="xlink">http://www.w3.org/1999/xlink</namespace>
       <namespace prefix="mods">http://www.loc.gov/mods/v3</namespace>
       <namespace prefix="xsi">http://www.w3.org/2001/XMLSchema-instance</namespace>
-      <namespace prefix="xlink">http://www.w3.org/1999/xlink</namespace>
     </namespaces>
   </properties>
   <form>
@@ -329,7 +329,7 @@
                   <access>TRUE</access>
                   <collapsed>FALSE</collapsed>
                   <collapsible>FALSE</collapsible>
-                  <description>Textual role term from MARCRelator terms vocabulary.  See http://www.loc.gov/marc/relators/relaterm.html. </description>
+                  <description>Designates the relationship (role) of the entity recorded in name to the resource described in the record. Terms should come from MARC Relator list (http://id.loc.gov/vocabulary/relators.html)</description>
                   <disabled>FALSE</disabled>
                   <executes_submit_callback>FALSE</executes_submit_callback>
                   <multiple>FALSE</multiple>
@@ -613,684 +613,6 @@
                   </actions>
                 </properties>
                 <children/>
-              </element>
-            </children>
-          </element>
-        </children>
-      </element>
-      <element name="publicationTab">
-        <properties>
-          <type>tabs</type>
-          <access>TRUE</access>
-          <collapsed>FALSE</collapsed>
-          <collapsible>FALSE</collapsible>
-          <disabled>FALSE</disabled>
-          <executes_submit_callback>FALSE</executes_submit_callback>
-          <multiple>FALSE</multiple>
-          <required>FALSE</required>
-          <resizable>FALSE</resizable>
-          <title>Publication Info</title>
-          <tree>TRUE</tree>
-          <actions>
-            <create>
-              <path>self::node()</path>
-              <context>parent</context>
-              <schema/>
-              <type>element</type>
-              <prefix>NULL</prefix>
-              <value>originInfo</value>
-            </create>
-            <read>
-              <path>mods:originInfo</path>
-              <context>parent</context>
-            </read>
-            <update>NULL</update>
-            <delete>NULL</delete>
-          </actions>
-        </properties>
-        <children>
-          <element name="publicationPanel">
-            <properties>
-              <type>tabpanel</type>
-              <access>TRUE</access>
-              <collapsed>FALSE</collapsed>
-              <collapsible>FALSE</collapsible>
-              <disabled>FALSE</disabled>
-              <executes_submit_callback>FALSE</executes_submit_callback>
-              <multiple>FALSE</multiple>
-              <required>FALSE</required>
-              <resizable>FALSE</resizable>
-              <tree>TRUE</tree>
-              <actions>
-                <create>
-                  <path>self::node()</path>
-                  <context>parent</context>
-                  <schema/>
-                  <type>element</type>
-                  <prefix>NULL</prefix>
-                  <value>originInfo</value>
-                </create>
-                <read>
-                  <path>mods:originInfo</path>
-                  <context>parent</context>
-                </read>
-                <update>NULL</update>
-                <delete>
-                  <path>self::node()</path>
-                  <context>self</context>
-                </delete>
-              </actions>
-            </properties>
-            <children>
-              <element name="publicationInfo">
-                <properties>
-                  <type>fieldset</type>
-                  <access>TRUE</access>
-                  <collapsed>FALSE</collapsed>
-                  <collapsible>FALSE</collapsible>
-                  <disabled>FALSE</disabled>
-                  <executes_submit_callback>FALSE</executes_submit_callback>
-                  <multiple>FALSE</multiple>
-                  <required>FALSE</required>
-                  <resizable>FALSE</resizable>
-                  <tree>TRUE</tree>
-                </properties>
-                <children>
-                  <element name="place">
-                    <properties>
-                      <type>tags</type>
-                      <access>TRUE</access>
-                      <collapsed>FALSE</collapsed>
-                      <collapsible>FALSE</collapsible>
-                      <disabled>FALSE</disabled>
-                      <executes_submit_callback>FALSE</executes_submit_callback>
-                      <multiple>FALSE</multiple>
-                      <required>FALSE</required>
-                      <resizable>FALSE</resizable>
-                      <tree>TRUE</tree>
-                    </properties>
-                    <children>
-                      <element name="placeTerm">
-                        <properties>
-                          <type>tag</type>
-                          <access>TRUE</access>
-                          <collapsed>FALSE</collapsed>
-                          <collapsible>FALSE</collapsible>
-                          <disabled>FALSE</disabled>
-                          <executes_submit_callback>FALSE</executes_submit_callback>
-                          <multiple>FALSE</multiple>
-                          <required>FALSE</required>
-                          <resizable>FALSE</resizable>
-                          <tree>TRUE</tree>
-                          <actions>
-                            <create>
-                              <path>self::node()</path>
-                              <context>parent</context>
-                              <schema/>
-                              <type>xml</type>
-                              <prefix>NULL</prefix>
-                              <value>&lt;place&gt;&lt;placeTerm type="text"&gt;%value%&lt;/placeTerm&gt;&lt;/place&gt;</value>
-                            </create>
-                            <read>
-                              <path>mods:place/mods:placeTerm</path>
-                              <context>parent</context>
-                            </read>
-                            <update>
-                              <path>self::node()</path>
-                              <context>self</context>
-                            </update>
-                            <delete>
-                              <path>self::node()</path>
-                              <context>self</context>
-                            </delete>
-                          </actions>
-                        </properties>
-                        <children/>
-                      </element>
-                    </children>
-                  </element>
-                  <element name="publisher">
-                    <properties>
-                      <type>tags</type>
-                      <access>TRUE</access>
-                      <collapsed>FALSE</collapsed>
-                      <collapsible>FALSE</collapsible>
-                      <disabled>FALSE</disabled>
-                      <executes_submit_callback>FALSE</executes_submit_callback>
-                      <multiple>FALSE</multiple>
-                      <required>FALSE</required>
-                      <resizable>FALSE</resizable>
-                      <title>Publisher</title>
-                      <tree>TRUE</tree>
-                    </properties>
-                    <children>
-                      <element name="publisher">
-                        <properties>
-                          <type>tag</type>
-                          <access>TRUE</access>
-                          <collapsed>FALSE</collapsed>
-                          <collapsible>FALSE</collapsible>
-                          <disabled>FALSE</disabled>
-                          <executes_submit_callback>FALSE</executes_submit_callback>
-                          <multiple>FALSE</multiple>
-                          <required>FALSE</required>
-                          <resizable>FALSE</resizable>
-                          <tree>TRUE</tree>
-                          <actions>
-                            <create>
-                              <path>self::node()</path>
-                              <context>parent</context>
-                              <schema/>
-                              <type>element</type>
-                              <prefix>NULL</prefix>
-                              <value>publisher</value>
-                            </create>
-                            <read>
-                              <path>mods:publisher</path>
-                              <context>parent</context>
-                            </read>
-                            <update>
-                              <path>self::node()</path>
-                              <context>self</context>
-                            </update>
-                            <delete>
-                              <path>self::node()</path>
-                              <context>self</context>
-                            </delete>
-                          </actions>
-                        </properties>
-                        <children/>
-                      </element>
-                    </children>
-                  </element>
-                  <element name="dateIssuedFieldSet">
-                    <properties>
-                      <type>fieldset</type>
-                      <access>TRUE</access>
-                      <collapsed>FALSE</collapsed>
-                      <collapsible>FALSE</collapsible>
-                      <disabled>FALSE</disabled>
-                      <executes_submit_callback>FALSE</executes_submit_callback>
-                      <multiple>FALSE</multiple>
-                      <required>FALSE</required>
-                      <resizable>FALSE</resizable>
-                      <title>Date Issued</title>
-                      <tree>TRUE</tree>
-                    </properties>
-                    <children>
-                      <element name="issueDate">
-                        <properties>
-                          <type>textfield</type>
-                          <access>TRUE</access>
-                          <collapsed>FALSE</collapsed>
-                          <collapsible>FALSE</collapsible>
-                          <disabled>FALSE</disabled>
-                          <executes_submit_callback>FALSE</executes_submit_callback>
-                          <multiple>FALSE</multiple>
-                          <required>FALSE</required>
-                          <resizable>FALSE</resizable>
-                          <title>Date Issued</title>
-                          <tree>TRUE</tree>
-                          <actions>
-                            <create>
-                              <path>self::node()</path>
-                              <context>parent</context>
-                              <schema/>
-                              <type>xml</type>
-                              <prefix>NULL</prefix>
-                              <value>&lt;dateIssued encoding="w3cdtf"&gt;%value%&lt;/dateIssued&gt;</value>
-                            </create>
-                            <read>
-                              <path>mods:dateIssued[not(@point)]</path>
-                              <context>parent</context>
-                            </read>
-                            <update>
-                              <path>self::node()</path>
-                              <context>self</context>
-                            </update>
-                            <delete>NULL</delete>
-                          </actions>
-                        </properties>
-                        <children/>
-                      </element>
-                      <element name="issuedQualifier">
-                        <properties>
-                          <type>select</type>
-                          <access>TRUE</access>
-                          <collapsed>FALSE</collapsed>
-                          <collapsible>FALSE</collapsible>
-                          <disabled>FALSE</disabled>
-                          <executes_submit_callback>FALSE</executes_submit_callback>
-                          <multiple>FALSE</multiple>
-                          <options>
-                            <index key=""/>
-                            <questionable>questionable</questionable>
-                            <inferred>inferred</inferred>
-                            <approximate>approximate</approximate>
-                          </options>
-                          <required>FALSE</required>
-                          <resizable>FALSE</resizable>
-                          <title>Qualifier</title>
-                          <tree>TRUE</tree>
-                          <actions>
-                            <create>
-                              <path>mods:dateIssued</path>
-                              <context>parent</context>
-                              <schema/>
-                              <type>attribute</type>
-                              <prefix>NULL</prefix>
-                              <value>qualifier</value>
-                            </create>
-                            <read>
-                              <path>mods:dateIssued[not(@point)]/@qualifier</path>
-                              <context>parent</context>
-                            </read>
-                            <update>
-                              <path>self::node()</path>
-                              <context>self</context>
-                            </update>
-                            <delete>NULL</delete>
-                          </actions>
-                        </properties>
-                        <children/>
-                      </element>
-                      <element name="issuedStartDate">
-                        <properties>
-                          <type>textfield</type>
-                          <access>TRUE</access>
-                          <collapsed>FALSE</collapsed>
-                          <collapsible>FALSE</collapsible>
-                          <disabled>FALSE</disabled>
-                          <executes_submit_callback>FALSE</executes_submit_callback>
-                          <multiple>FALSE</multiple>
-                          <required>FALSE</required>
-                          <resizable>FALSE</resizable>
-                          <title>Start date</title>
-                          <tree>TRUE</tree>
-                          <actions>
-                            <create>
-                              <path>self::node()</path>
-                              <context>parent</context>
-                              <schema/>
-                              <type>xml</type>
-                              <prefix>NULL</prefix>
-                              <value>&lt;dateIssued encoding="w3cdtf"
-                                                  point="start"&gt;%value%&lt;/dateIssued&gt;</value>
-                            </create>
-                            <read>
-                              <path>mods:dateIssued[@point='start']</path>
-                              <context>parent</context>
-                            </read>
-                            <update>
-                              <path>self::node()</path>
-                              <context>self</context>
-                            </update>
-                            <delete>NULL</delete>
-                          </actions>
-                        </properties>
-                        <children/>
-                      </element>
-                      <element name="issuedStartQualifier">
-                        <properties>
-                          <type>select</type>
-                          <access>TRUE</access>
-                          <collapsed>FALSE</collapsed>
-                          <collapsible>FALSE</collapsible>
-                          <disabled>FALSE</disabled>
-                          <executes_submit_callback>FALSE</executes_submit_callback>
-                          <multiple>FALSE</multiple>
-                          <options>
-                            <index key=""/>
-                            <questionable>questionable</questionable>
-                            <approximate>approximate</approximate>
-                            <inferred>inferred</inferred>
-                          </options>
-                          <required>FALSE</required>
-                          <resizable>FALSE</resizable>
-                          <title>Qualifier</title>
-                          <tree>TRUE</tree>
-                          <actions>
-                            <create>
-                              <path>mods:dateIssued[@point='start']</path>
-                              <context>parent</context>
-                              <schema/>
-                              <type>attribute</type>
-                              <prefix>NULL</prefix>
-                              <value>qualifier</value>
-                            </create>
-                            <read>
-                              <path>mods:dateIssued[@point='start']/@qualifier</path>
-                              <context>parent</context>
-                            </read>
-                            <update>
-                              <path>mods:dateIssued[@point='start']/@qualifier</path>
-                              <context>parent</context>
-                            </update>
-                            <delete>NULL</delete>
-                          </actions>
-                        </properties>
-                        <children/>
-                      </element>
-                      <element name="issuedEndDate">
-                        <properties>
-                          <type>textfield</type>
-                          <access>TRUE</access>
-                          <collapsed>FALSE</collapsed>
-                          <collapsible>FALSE</collapsible>
-                          <disabled>FALSE</disabled>
-                          <executes_submit_callback>FALSE</executes_submit_callback>
-                          <multiple>FALSE</multiple>
-                          <required>FALSE</required>
-                          <resizable>FALSE</resizable>
-                          <title>End Date</title>
-                          <tree>TRUE</tree>
-                          <actions>
-                            <create>
-                              <path>self::node()</path>
-                              <context>parent</context>
-                              <schema/>
-                              <type>xml</type>
-                              <prefix>NULL</prefix>
-                              <value>&lt;dateIssued encoding="w3cdtf"
-                                                  point="end"&gt;%value%&lt;/dateIssued&gt;</value>
-                            </create>
-                            <read>
-                              <path>mods:dateIssued[@point='end']</path>
-                              <context>parent</context>
-                            </read>
-                            <update>
-                              <path>self::node()</path>
-                              <context>self</context>
-                            </update>
-                            <delete>NULL</delete>
-                          </actions>
-                        </properties>
-                        <children/>
-                      </element>
-                      <element name="issuedEndQualifier">
-                        <properties>
-                          <type>select</type>
-                          <access>TRUE</access>
-                          <collapsed>FALSE</collapsed>
-                          <collapsible>FALSE</collapsible>
-                          <disabled>FALSE</disabled>
-                          <executes_submit_callback>FALSE</executes_submit_callback>
-                          <multiple>FALSE</multiple>
-                          <options>
-                            <index key=""/>
-                            <approximate>approximate</approximate>
-                            <questionable>questionable</questionable>
-                            <inferred>inferred</inferred>
-                          </options>
-                          <required>FALSE</required>
-                          <resizable>FALSE</resizable>
-                          <tree>TRUE</tree>
-                          <actions>
-                            <create>
-                              <path>mods:dateIssued[@point='end']</path>
-                              <context>parent</context>
-                              <schema/>
-                              <type>attribute</type>
-                              <prefix>NULL</prefix>
-                              <value>qualifier</value>
-                            </create>
-                            <read>NULL</read>
-                            <update>NULL</update>
-                            <delete>NULL</delete>
-                          </actions>
-                        </properties>
-                        <children/>
-                      </element>
-                    </children>
-                  </element>
-                  <element name="dateCreatedSet">
-                    <properties>
-                      <type>fieldset</type>
-                      <access>TRUE</access>
-                      <collapsed>FALSE</collapsed>
-                      <collapsible>FALSE</collapsible>
-                      <disabled>FALSE</disabled>
-                      <executes_submit_callback>FALSE</executes_submit_callback>
-                      <multiple>FALSE</multiple>
-                      <required>FALSE</required>
-                      <resizable>FALSE</resizable>
-                      <title>Date Created</title>
-                      <tree>TRUE</tree>
-                    </properties>
-                    <children>
-                      <element name="dateCreated">
-                        <properties>
-                          <type>textfield</type>
-                          <access>TRUE</access>
-                          <collapsed>FALSE</collapsed>
-                          <collapsible>FALSE</collapsible>
-                          <disabled>FALSE</disabled>
-                          <executes_submit_callback>FALSE</executes_submit_callback>
-                          <multiple>FALSE</multiple>
-                          <required>FALSE</required>
-                          <resizable>FALSE</resizable>
-                          <title>Date Created</title>
-                          <tree>TRUE</tree>
-                          <actions>
-                            <create>
-                              <path>self::node()</path>
-                              <context>parent</context>
-                              <schema/>
-                              <type>xml</type>
-                              <prefix>NULL</prefix>
-                              <value>&lt;dateCreated encoding="w3cdtf"&gt;%value%&lt;/dateCreated&gt;</value>
-                            </create>
-                            <read>
-                              <path>mods:dateCreated[not(@point)]</path>
-                              <context>parent</context>
-                            </read>
-                            <update>
-                              <path>self::node()</path>
-                              <context>self</context>
-                            </update>
-                            <delete>NULL</delete>
-                          </actions>
-                        </properties>
-                        <children/>
-                      </element>
-                      <element name="dateCreatedQualifier">
-                        <properties>
-                          <type>select</type>
-                          <access>TRUE</access>
-                          <collapsed>FALSE</collapsed>
-                          <collapsible>FALSE</collapsible>
-                          <disabled>FALSE</disabled>
-                          <executes_submit_callback>FALSE</executes_submit_callback>
-                          <multiple>FALSE</multiple>
-                          <options>
-                            <index key=""/>
-                            <questionable>questionable</questionable>
-                            <approximate>approximate</approximate>
-                            <inferred>inferred</inferred>
-                          </options>
-                          <required>FALSE</required>
-                          <resizable>FALSE</resizable>
-                          <title>Qualifier</title>
-                          <tree>TRUE</tree>
-                          <actions>
-                            <create>
-                              <path>mods:dateCreated</path>
-                              <context>parent</context>
-                              <schema/>
-                              <type>attribute</type>
-                              <prefix>NULL</prefix>
-                              <value>qualifier</value>
-                            </create>
-                            <read>
-                              <path>mods:dateCreated[not(@point)]/@qualifier</path>
-                              <context>parent</context>
-                            </read>
-                            <update>
-                              <path>self::node()</path>
-                              <context>self</context>
-                            </update>
-                            <delete>NULL</delete>
-                          </actions>
-                        </properties>
-                        <children/>
-                      </element>
-                      <element name="createdStartDate">
-                        <properties>
-                          <type>textfield</type>
-                          <access>TRUE</access>
-                          <collapsed>FALSE</collapsed>
-                          <collapsible>FALSE</collapsible>
-                          <disabled>FALSE</disabled>
-                          <executes_submit_callback>FALSE</executes_submit_callback>
-                          <multiple>FALSE</multiple>
-                          <required>FALSE</required>
-                          <resizable>FALSE</resizable>
-                          <title>Start Date</title>
-                          <tree>TRUE</tree>
-                          <actions>
-                            <create>
-                              <path/>
-                              <context>parent</context>
-                              <schema/>
-                              <type>xml</type>
-                              <prefix>NULL</prefix>
-                              <value>&lt;dateCreated encoding="w3cdtf"
-                                                  point="start"&gt;%value%&lt;/dateCreated&gt;</value>
-                            </create>
-                            <read>
-                              <path>mods:dateCreated[@point='start']</path>
-                              <context>parent</context>
-                            </read>
-                            <update>
-                              <path>self::node()</path>
-                              <context>self</context>
-                            </update>
-                            <delete>NULL</delete>
-                          </actions>
-                        </properties>
-                        <children/>
-                      </element>
-                      <element name="createdStartQualifier">
-                        <properties>
-                          <type>select</type>
-                          <access>TRUE</access>
-                          <collapsed>FALSE</collapsed>
-                          <collapsible>FALSE</collapsible>
-                          <disabled>FALSE</disabled>
-                          <executes_submit_callback>FALSE</executes_submit_callback>
-                          <multiple>FALSE</multiple>
-                          <options>
-                            <index key=""/>
-                            <questionable>questionable</questionable>
-                            <approximate>approximate</approximate>
-                            <inferred>inferred</inferred>
-                          </options>
-                          <required>FALSE</required>
-                          <resizable>FALSE</resizable>
-                          <title>Qualifier</title>
-                          <tree>TRUE</tree>
-                          <actions>
-                            <create>
-                              <path>mods:dateCreated[@point='start']</path>
-                              <context>parent</context>
-                              <schema/>
-                              <type>attribute</type>
-                              <prefix>NULL</prefix>
-                              <value>qualifier</value>
-                            </create>
-                            <read>
-                              <path>mods:dateCreated[@point='start']/@qualifier</path>
-                              <context>parent</context>
-                            </read>
-                            <update>
-                              <path>mods:dateCreated[@point='start']/@qualifier</path>
-                              <context>parent</context>
-                            </update>
-                            <delete>NULL</delete>
-                          </actions>
-                        </properties>
-                        <children/>
-                      </element>
-                      <element name="createdEndDate">
-                        <properties>
-                          <type>textfield</type>
-                          <access>TRUE</access>
-                          <collapsed>FALSE</collapsed>
-                          <collapsible>FALSE</collapsible>
-                          <disabled>FALSE</disabled>
-                          <executes_submit_callback>FALSE</executes_submit_callback>
-                          <multiple>FALSE</multiple>
-                          <required>FALSE</required>
-                          <resizable>FALSE</resizable>
-                          <title>End Date</title>
-                          <tree>TRUE</tree>
-                          <actions>
-                            <create>
-                              <path>self::node()</path>
-                              <context>parent</context>
-                              <schema/>
-                              <type>xml</type>
-                              <prefix>NULL</prefix>
-                              <value>&lt;dateCreated encoding="w3cdtf"
-                                                  point="end"&gt;%value%&lt;/dateCreated&gt;</value>
-                            </create>
-                            <read>
-                              <path>mods:dateCreated[@point='end']</path>
-                              <context>parent</context>
-                            </read>
-                            <update>
-                              <path>self::node()</path>
-                              <context>self</context>
-                            </update>
-                            <delete>NULL</delete>
-                          </actions>
-                        </properties>
-                        <children/>
-                      </element>
-                      <element name="createdEndQualifier">
-                        <properties>
-                          <type>select</type>
-                          <access>TRUE</access>
-                          <collapsed>FALSE</collapsed>
-                          <collapsible>FALSE</collapsible>
-                          <disabled>FALSE</disabled>
-                          <executes_submit_callback>FALSE</executes_submit_callback>
-                          <multiple>FALSE</multiple>
-                          <options>
-                            <index key=""/>
-                            <approximate>approximate</approximate>
-                            <questionable>questionable</questionable>
-                            <inferred>inferred</inferred>
-                          </options>
-                          <required>FALSE</required>
-                          <resizable>FALSE</resizable>
-                          <title>Qualifier</title>
-                          <tree>TRUE</tree>
-                          <actions>
-                            <create>
-                              <path>mods:dateCreated[@point='end']</path>
-                              <context>parent</context>
-                              <schema/>
-                              <type>attribute</type>
-                              <prefix>NULL</prefix>
-                              <value>qualifier</value>
-                            </create>
-                            <read>
-                              <path>mods:dateCreated[@point='end']/@qualifier</path>
-                              <context>parent</context>
-                            </read>
-                            <update>
-                              <path>mods:dateCreated[@point='end']/@qualifier</path>
-                              <context>parent</context>
-                            </update>
-                            <delete>NULL</delete>
-                          </actions>
-                        </properties>
-                        <children/>
-                      </element>
-                    </children>
-                  </element>
-                </children>
               </element>
             </children>
           </element>
@@ -1630,7 +952,7 @@
               <tree>TRUE</tree>
               <actions>
                 <create>
-                  <path>/mods:mods</path>
+                  <path>self::node()</path>
                   <context>document</context>
                   <schema/>
                   <type>element</type>
@@ -1652,30 +974,31 @@
               </actions>
             </properties>
             <children>
-              <element name="languageText">
+              <element name="languageCode">
                 <properties>
                   <type>textfield</type>
                   <access>TRUE</access>
                   <collapsed>FALSE</collapsed>
                   <collapsible>FALSE</collapsible>
+                  <description>A description of the language in which the content of the resource is expressed</description>
                   <disabled>FALSE</disabled>
                   <executes_submit_callback>FALSE</executes_submit_callback>
                   <multiple>FALSE</multiple>
                   <required>FALSE</required>
                   <resizable>FALSE</resizable>
-                  <title>Language</title>
+                  <title>Language (code)</title>
                   <tree>TRUE</tree>
                   <actions>
                     <create>
                       <path>self::node()</path>
                       <context>parent</context>
                       <schema/>
-                      <type>element</type>
+                      <type>xml</type>
                       <prefix>NULL</prefix>
-                      <value>&lt;languageTerm type="text" authority=""&gt;%value%&lt;/languageTerm&gt;</value>
+                      <value>&lt;languageTerm type="code" authority=""&gt;%value%&lt;/languageTerm&gt;</value>
                     </create>
                     <read>
-                      <path>mods:languageTerm[@type='text']</path>
+                      <path>mods:languageTerm[@type='code']</path>
                       <context>parent</context>
                     </read>
                     <update>
@@ -1696,10 +1019,12 @@
                   <access>TRUE</access>
                   <collapsed>FALSE</collapsed>
                   <collapsible>FALSE</collapsible>
+                  <default_value>iso639-2b</default_value>
                   <disabled>FALSE</disabled>
                   <executes_submit_callback>FALSE</executes_submit_callback>
                   <multiple>FALSE</multiple>
                   <options>
+                    <index key=""/>
                     <index key="iso639-2b">iso639-2b</index>
                   </options>
                   <required>FALSE</required>
@@ -1724,7 +1049,7 @@
                 </properties>
                 <children/>
               </element>
-              <element name="languageCode">
+              <element name="languageText">
                 <properties>
                   <type>textfield</type>
                   <access>TRUE</access>
@@ -1735,7 +1060,7 @@
                   <multiple>FALSE</multiple>
                   <required>FALSE</required>
                   <resizable>FALSE</resizable>
-                  <title>Language (code)</title>
+                  <title>Language (text)</title>
                   <tree>TRUE</tree>
                   <actions>
                     <create>
@@ -1744,11 +1069,11 @@
                       <schema/>
                       <type>xml</type>
                       <prefix>NULL</prefix>
-                      <value>&lt;languageTerm type="code" authority=""&gt;%value%&lt;/languageTerm&gt;</value>
+                      <value>&lt;languageTerm type="text"&gt;%value%&lt;/languageTerm&gt;</value>
                     </create>
                     <read>
-                      <path>mods:languageTerm[@type='code']</path>
-                      <context>parent</context>
+                      <path>mods:languageTerm[@type='text']</path>
+                      <context>document</context>
                     </read>
                     <update>
                       <path>self::node()</path>
@@ -1878,13 +1203,13 @@
               <access>TRUE</access>
               <collapsed>FALSE</collapsed>
               <collapsible>FALSE</collapsible>
-              <default_value>reformatted digital</default_value>
               <description>The method by which a resource achieved digital form</description>
               <disabled>FALSE</disabled>
               <executes_submit_callback>FALSE</executes_submit_callback>
               <multiple>FALSE</multiple>
               <options>
                 <index key=""/>
+                <index key="digitized other analog">digitized other analog</index>
                 <index key="born digital">born digital</index>
                 <index key="reformatted digital">reformatted digital</index>
               </options>
@@ -2174,6 +1499,7 @@
                   <access>TRUE</access>
                   <collapsed>FALSE</collapsed>
                   <collapsible>FALSE</collapsible>
+                  <description>User "ownership" for the institution or repository that holds the original resource and/or where it is available.</description>
                   <disabled>FALSE</disabled>
                   <executes_submit_callback>FALSE</executes_submit_callback>
                   <multiple>FALSE</multiple>
@@ -2653,11 +1979,11 @@
                       <access>TRUE</access>
                       <collapsed>FALSE</collapsed>
                       <collapsible>FALSE</collapsible>
-                      <default_value>personal</default_value>
                       <disabled>FALSE</disabled>
                       <executes_submit_callback>FALSE</executes_submit_callback>
                       <multiple>FALSE</multiple>
                       <options>
+                        <index key=""/>
                         <corporate>corporate</corporate>
                         <personal>personal</personal>
                       </options>
@@ -2904,7 +2230,7 @@
           </element>
         </children>
       </element>
-      <element name="relatedItemFieldset">
+      <element name="relationFieldset">
         <properties>
           <type>fieldset</type>
           <access>TRUE</access>
@@ -2915,11 +2241,11 @@
           <multiple>FALSE</multiple>
           <required>FALSE</required>
           <resizable>FALSE</resizable>
-          <title>Related Item</title>
+          <title>Relation</title>
           <tree>TRUE</tree>
         </properties>
         <children>
-          <element name="title">
+          <element name="collection">
             <properties>
               <type>tags</type>
               <access>TRUE</access>
@@ -2930,7 +2256,7 @@
               <multiple>FALSE</multiple>
               <required>FALSE</required>
               <resizable>FALSE</resizable>
-              <title>Title of a Related Item</title>
+              <title>Collection title</title>
               <tree>TRUE</tree>
             </properties>
             <children>
@@ -3020,7 +2346,7 @@
               <multiple>FALSE</multiple>
               <required>FALSE</required>
               <resizable>FALSE</resizable>
-              <title>Series Info for a Related Item</title>
+              <title>Series Info</title>
               <tree>TRUE</tree>
               <actions>
                 <create>
@@ -3079,7 +2405,7 @@
             </properties>
             <children/>
           </element>
-          <element name="relatedResource">
+          <element name="relatedResourceURL">
             <properties>
               <type>textfield</type>
               <access>FALSE</access>
