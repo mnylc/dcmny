@@ -2551,7 +2551,7 @@
                     </read>
                     <update>
                       <path>self::node()</path>
-                      <context>self</context>
+                      <context>parent</context>
                     </update>
                     <delete>NULL</delete>
                   </actions>
