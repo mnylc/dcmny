@@ -17,8 +17,9 @@
   <xsl:template match="mods:subject[./mods:topic[./text()='null']]"/>
   <xsl:template match="mods:subject[mods:geographic[text()='null']]"/>
   <xsl:template match="mods:subject[mods:temporal[text()='null']]"/>
+  <xsl:template match="mods:name[mods:namePart[text()='null']]"/>
+  <xsl:template match="mods:originInfo[mods:dateCreated[text()='null']]"/>
   
-
   <xsl:template match="mods:typeOfResource">
     <xsl:variable name="typelist" select="tokenize(., ';')"/>
     <xsl:for-each select="$typelist">
@@ -41,19 +42,36 @@
     </xsl:for-each>
   </xsl:template>
   
-  <xsl:template match="mods:subject[./mods:name/mods:namePart[not(contains(./text(), 'null'))]]">
+  <xsl:template match="mods:subject[./mods:name[@type='personal']/namePart[not(contains(./text(), 'null'))]]">
     <xsl:variable name="namelist" select="tokenize(., ';')"/>
     <xsl:for-each select="$namelist">
       <xsl:element name="subject" namespace="http://www.loc.gov/mods/v3">
         <xsl:attribute name="authority">fast</xsl:attribute>
         <xsl:element name="name" namespace="http://www.loc.gov/mods/v3">
-          <xsl:element name="namePart" namespace="http://www.loc.gov/mods/v3">
-          <xsl:value-of select="normalize-space(.)"/>
-          </xsl:element>
+          <xsl:attribute name="type">personal</xsl:attribute>
+            <xsl:element name="namePart" namespace="http://www.loc.gov/mods/v3">
+              <xsl:value-of select="normalize-space(.)"/>
+            </xsl:element>
         </xsl:element>
       </xsl:element>
     </xsl:for-each>
   </xsl:template>
+  
+  <xsl:template match="mods:subject[./mods:name[@type='corporate']/namePart[not(contains(./text(), 'null'))]]">
+    <xsl:variable name="namelist" select="tokenize(., ';')"/>
+    <xsl:for-each select="$namelist">
+      <xsl:element name="subject" namespace="http://www.loc.gov/mods/v3">
+        <xsl:attribute name="authority">fast</xsl:attribute>
+        <xsl:element name="name" namespace="http://www.loc.gov/mods/v3">
+          <xsl:attribute name="type">corporate</xsl:attribute>
+            <xsl:element name="namePart" namespace="http://www.loc.gov/mods/v3">
+              <xsl:value-of select="normalize-space(.)"/>
+            </xsl:element>
+        </xsl:element>
+      </xsl:element>
+    </xsl:for-each>
+  </xsl:template>
+  
   
 
   <xsl:template match="mods:subject[./mods:geographic[not(contains(./text(), 'null'))]]">
@@ -80,6 +98,18 @@
       </xsl:for-each>
   </xsl:template>
   
+  <xsl:template match="mods:subject[./mods:temporal[not(contains(./text(), 'null'))]]">
+    <xsl:variable name="temporallist" select="tokenize(replace(., '&quot;', ''), ';')"/>
+    <xsl:for-each select="$temporallist">
+      <xsl:element name="subject" namespace="http://www.loc.gov/mods/v3">
+        <xsl:attribute name="authority">fast</xsl:attribute>
+        <xsl:element name="temporal" namespace="http://www.loc.gov/mods/v3">
+          <xsl:value-of select="normalize-space(.)"/>
+        </xsl:element>
+      </xsl:element>
+    </xsl:for-each>
+  </xsl:template>
+  
   <xsl:template match="mods:dateCreated">
     <xsl:call-template name="date-to-mods">
       <xsl:with-param name="dateval">
@@ -87,6 +117,7 @@
       </xsl:with-param>
     </xsl:call-template>
   </xsl:template>
+  
   
   <xsl:template name="date-to-mods">
     <xsl:param name="dateval"/>

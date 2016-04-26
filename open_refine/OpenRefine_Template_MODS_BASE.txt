@@ -58,7 +58,7 @@
 			<namePart>{{(cells["Subject-Name-Personal"].value)}}</namePart>
 		</name>
 	</subject>
-	subject authority="fast">
+	<subject authority="fast">
 		<name type="corporate">
 			<namePart>{{(cells["Subject-Name-Corporate"].value)}}</namePart>
 		</name>
@@ -100,7 +100,7 @@
 	</language>
 	<relatedItem>
 		<titleInfo>
-			<title>{{(cells["Relation].value)}}</title>
+			<title>{{(cells["Relation"].value)}}</title>
 		</titleInfo>
 	</relatedItem>
 	<relatedItem type="host" displayLabel="Collection">

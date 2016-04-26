@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+{% block content %}
+{% autoescape false %}
+<mods xmlns="http://www.loc.gov/mods/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mods="http://www.loc.gov/mods/v3" xsi:schemaLocation="http://www.loc.gov/mods/v3 http://www.loc.gov/standards/mods/v3/mods-3-4.xsd">
+  <titleInfo>
+    <title>{{ data.title }}</title>
+  </titleInfo>
+{% if  attribute(data, 'subject-topic') %}
+{% for topic in attribute(data, 'subject-topic')|split (';') %}
+<subject authority="fast">
+<topic>{{ topic|trim }}</topic>
+</subject>
+{% endfor %}
+{% endif %}
+{% if  attribute(data, 'subject-geographic') %}
+{% for topic in attribute(data, 'subject-geographic')|split (';') %}
+<subject authority="fast">
+<topic>{{ topic|trim }}</topic>
+</subject>
+{% endfor %}
+{% endif %}
+{% if  attribute(data, 'subject-temporal') %}
+{% for topic in attribute(data, 'subject-temporal')|split (';') %}
+<subject authority="fast">
+<topic>{{ topic|trim }}</topic>
+</subject>
+{% endfor %}
+{% endif %} 
+{% if attribute(data, 'date created') or attribute(data, 'date issued') or attribute(data, 'publisher') or attribute(data, 'place of publication') %}
+<originInfo>
+{% if attribute(data, 'date created') %}
+    <dateCreated encoding="w3cdtf" keyDate="yes">{{ "January º1970"|date("Y-m-d") }}</dateCreated>
+{% endif %} 
+    <place>
+      <placeTerm type="text">New York (State)--White Plains</placeTerm>
+    </place>
+</originInfo>
+{% endif %} 
+  <abstract>13 Colonies float for parade celebrating 250th anniversary of the purchase of White Plains held on September 27, 1933.</abstract>
+  <note>Digitized by the Metropolitan New York Library Council as part of the Culture In Transit project, funded by a grant from the John S. and James L. Knight Foundation.</note>
+  <typeOfResource>still image</typeOfResource>
+  <genre authority="aat">black-and-white photographs</genre>
+  <physicalDescription>
+    <extent>1 black and white print; 8in x 10in</extent>
+    <internetMediaType>image/jp2</internetMediaType>
+    <digitalOrigin>reformatted digital</digitalOrigin>
+  </physicalDescription>
+  <relatedItem type="host" displayLabel="Collection">
+    <titleInfo>
+      <title>White Plains Collection</title>
+    </titleInfo>
+  </relatedItem>
+<accessCondition>
+{{ data.rights }}
+</accessCondition>
+  <note type="ownership">{{ attribute(data, 'owning_institution_held_by') }}</note>
+  <identifier type="local">{{ data.identifier }}</identifier>
+  <recordInfo>
+    <languageOfCataloging>
+      <languageTerm authority="iso639-2b" type="code">eng</languageTerm>
+    </languageOfCataloging>
+  </recordInfo>
+</mods>
+{% endautoescape %}
+{% endblock %}
