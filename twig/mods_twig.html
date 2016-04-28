@@ -18,7 +18,7 @@
 {% endfor %}
 {% endif %}
 
-{% if  attribute(data, 'name_corporate]') %}
+{% if  attribute(data, 'name_corporate') %}
 {% for name in attribute(data, 'name_corporate')|split (';') %}
 <name authority="naf" type="corporate">
 	<namePart>{{ name|trim }}</namePart>
@@ -29,7 +29,7 @@
 {% endfor %}
 {% endif %}
 
-{% if  attribute(data, 'creator_personal]') %}
+{% if  attribute(data, 'creator_personal') %}
 {% for creator in attribute(data, 'creator_personal')|split (';') %}
 <name authority="naf" type="personal">
 	<namePart>{{ creator|trim }}</namePart>
@@ -40,7 +40,7 @@
 {% endfor %}
 {% endif %}
 
-{% if  attribute(data, 'creator_corporate]') %}
+{% if  attribute(data, 'creator_corporate') %}
 {% for creator in attribute(data, 'creator_corporate')|split (';') %}
 <name authority="naf" type="corporate">
 	<namePart>{{ creator|trim }}</namePart>
@@ -51,7 +51,7 @@
 {% endfor %}
 {% endif %}
 
-{% if  attribute(data, 'contributor_personal]') %}
+{% if  attribute(data, 'contributor_personal') %}
 {% for contributor in attribute(data, 'contributor_personal')|split (';') %}
 <name authority="naf" type="personal">
 	<namePart>{{ contributor|trim }}</namePart>
@@ -62,7 +62,7 @@
 {% endfor %}
 {% endif %}
 
-{% if  attribute(data, 'contributor_corporate]') %}
+{% if  attribute(data, 'contributor_corporate') %}
 {% for contributor in attribute(data, 'contributor_corporate')|split (';') %}
 <name authority="naf" type="corporate">
 	<namePart>{{ contributor|trim }}</namePart>
@@ -198,10 +198,12 @@
       <title>{{ data.collection_title }}</title>
     </titleInfo>
 </relatedItem>
-  
+
+{% if attribute(data, 'collection_description') %}  
 <relatedItem type="host" displayLabel="Collection">
     <abstract>{{ data.collection_description }}</abstract>
 </relatedItem>
+{% endif %} 
   
 <accessCondition>{{ data.rights }}</accessCondition>
 <note type="ownership">{{ data.owning_institution_held_by }}</note>
