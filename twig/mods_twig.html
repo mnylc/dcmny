@@ -156,7 +156,12 @@
 
 <abstract>{{ data.description }}</abstract>
 <note>{{ data.note }}</note>
+
+{% if  attribute(data, 'type_of_resource') %}
+{% for type in attribute(data, 'type_of_resource')|split (';') %}
 <typeOfResource>{{ data.type_of_resource }}</typeOfResource>
+{% endfor %}
+{% endif %} 
   
 {% if  attribute(data, 'genre') %}
 {% for genre in attribute(data, 'genre')|split (';') %}
