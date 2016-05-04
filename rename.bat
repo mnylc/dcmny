@@ -1,8 +1,8 @@
 @echo off
-for %%a in (*.jpg*) do (
+for %%a in (*.tif*) do (
 	if %%~a NEQ %0 (
 		md "%%~na" 2>nul
-		move "%%a" "%%~na\OBJ.jpg"
+		move "%%a" "%%~na\OBJ.tif"
 	)
 )
 for %%a in (*.xml*) do (
