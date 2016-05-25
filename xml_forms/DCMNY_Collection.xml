@@ -213,7 +213,7 @@
                   <disabled>FALSE</disabled>
                   <executes_submit_callback>FALSE</executes_submit_callback>
                   <multiple>FALSE</multiple>
-                  <required>FALSE</required>
+                  <required>TRUE</required>
                   <resizable>FALSE</resizable>
                   <title>Collection Description</title>
                   <tree>TRUE</tree>
@@ -294,13 +294,15 @@
                   <collapsed>FALSE</collapsed>
                   <collapsible>FALSE</collapsible>
                   <default_value>ownership</default_value>
-                  <description>Add name of the institution that holds the collection </description>
+                  <description>Use "ownership" for indicating the name of the institution that holds the collection.
+
+For general notes about the collection, leave type of note blank.</description>
                   <disabled>FALSE</disabled>
                   <executes_submit_callback>FALSE</executes_submit_callback>
                   <multiple>FALSE</multiple>
                   <options>
                     <index key=""/>
-                    <ownership>Ownership</ownership>
+                    <ownership>ownership</ownership>
                   </options>
                   <required>FALSE</required>
                   <resizable>FALSE</resizable>
@@ -360,6 +362,74 @@
           </element>
         </children>
       </element>
+      <element name="typeOfResource">
+        <properties>
+          <type>tabs</type>
+          <access>TRUE</access>
+          <collapsed>FALSE</collapsed>
+          <collapsible>FALSE</collapsible>
+          <disabled>FALSE</disabled>
+          <executes_submit_callback>FALSE</executes_submit_callback>
+          <multiple>FALSE</multiple>
+          <required>FALSE</required>
+          <resizable>FALSE</resizable>
+          <title>Type of Resource</title>
+          <tree>TRUE</tree>
+        </properties>
+        <children>
+          <element name="0">
+            <properties>
+              <type>tabpanel</type>
+              <access>TRUE</access>
+              <collapsed>FALSE</collapsed>
+              <collapsible>FALSE</collapsible>
+              <disabled>FALSE</disabled>
+              <executes_submit_callback>FALSE</executes_submit_callback>
+              <multiple>FALSE</multiple>
+              <required>FALSE</required>
+              <resizable>FALSE</resizable>
+              <tree>TRUE</tree>
+              <actions>
+                <create>
+                  <path>self::node()</path>
+                  <context>parent</context>
+                  <schema/>
+                  <type>xml</type>
+                  <prefix>NULL</prefix>
+                  <value>&lt;typeOfResource collection="yes"&gt;%value%&lt;/typeOfResource&gt;</value>
+                </create>
+                <read>
+                  <path>mods:typeOfResource</path>
+                  <context>parent</context>
+                </read>
+                <update>
+                  <path>self::node()</path>
+                  <context>self</context>
+                </update>
+              </actions>
+            </properties>
+            <children>
+              <element name="typeOfResource">
+                <properties>
+                  <type>select</type>
+                  <access>TRUE</access>
+                  <collapsed>FALSE</collapsed>
+                  <collapsible>FALSE</collapsible>
+                  <description>Select appropriate MODS &lt;typeOfResource&gt; value from drop-down </description>
+                  <disabled>FALSE</disabled>
+                  <executes_submit_callback>FALSE</executes_submit_callback>
+                  <multiple>FALSE</multiple>
+                  <options>
+                    <index key="still image">still image</index>
+                    <index key="mixed material">mixed material</index>
+                  </options>
+                </properties>
+                <children/>
+              </element>
+            </children>
+          </element>
+        </children>
+      </element>
       <element name="name">
         <properties>
           <type>tabs</type>
@@ -401,10 +471,6 @@
                   <context>parent</context>
                 </read>
                 <update>NULL</update>
-                <delete>
-                  <path>self::node()</path>
-                  <context>self</context>
-                </delete>
               </actions>
             </properties>
             <children>
@@ -454,7 +520,6 @@
                   <access>TRUE</access>
                   <collapsed>FALSE</collapsed>
                   <collapsible>FALSE</collapsible>
-                  <description>A full personal name or full corporate name of the creator of the collection</description>
                   <disabled>FALSE</disabled>
                   <executes_submit_callback>FALSE</executes_submit_callback>
                   <multiple>FALSE</multiple>
@@ -565,93 +630,6 @@
                     <update>
                       <path>self::node()</path>
                       <context>self</context>
-                    </update>
-                    <delete>NULL</delete>
-                  </actions>
-                </properties>
-                <children/>
-              </element>
-            </children>
-          </element>
-        </children>
-      </element>
-      <element name="typeOfResource">
-        <properties>
-          <type>tabs</type>
-          <access>TRUE</access>
-          <collapsed>FALSE</collapsed>
-          <collapsible>FALSE</collapsible>
-          <disabled>FALSE</disabled>
-          <executes_submit_callback>FALSE</executes_submit_callback>
-          <multiple>FALSE</multiple>
-          <required>FALSE</required>
-          <resizable>FALSE</resizable>
-          <title>Type of Resource</title>
-          <tree>TRUE</tree>
-        </properties>
-        <children>
-          <element name="0">
-            <properties>
-              <type>tabpanel</type>
-              <access>TRUE</access>
-              <collapsed>FALSE</collapsed>
-              <collapsible>FALSE</collapsible>
-              <disabled>FALSE</disabled>
-              <executes_submit_callback>FALSE</executes_submit_callback>
-              <multiple>FALSE</multiple>
-              <required>FALSE</required>
-              <resizable>FALSE</resizable>
-              <tree>TRUE</tree>
-              <actions>
-                <create>
-                  <path>self::node()</path>
-                  <context>parent</context>
-                  <schema/>
-                  <type>element</type>
-                  <prefix>NULL</prefix>
-                  <value>typeOfResource</value>
-                </create>
-                <read>
-                  <path>mods:typeOfResource</path>
-                  <context>parent</context>
-                </read>
-                <update>
-                  <path>self::node()</path>
-                  <context>self</context>
-                </update>
-                <delete>NULL</delete>
-              </actions>
-            </properties>
-            <children>
-              <element name="typeOfResource">
-                <properties>
-                  <type>select</type>
-                  <access>TRUE</access>
-                  <collapsed>FALSE</collapsed>
-                  <collapsible>FALSE</collapsible>
-                  <disabled>FALSE</disabled>
-                  <executes_submit_callback>FALSE</executes_submit_callback>
-                  <multiple>FALSE</multiple>
-                  <options>
-                    <index key=""/>
-                    <index key="mixed material">mixed material</index>
-                    <text>text</text>
-                    <cartographic>cartographic</cartographic>
-                    <index key="still image">still image</index>
-                  </options>
-                  <required>FALSE</required>
-                  <resizable>FALSE</resizable>
-                  <title>Type of Resource</title>
-                  <tree>TRUE</tree>
-                  <actions>
-                    <create>NULL</create>
-                    <read>
-                      <path>self::node()</path>
-                      <context>parent</context>
-                    </read>
-                    <update>
-                      <path>self::node()</path>
-                      <context>parent</context>
                     </update>
                     <delete>NULL</delete>
                   </actions>
