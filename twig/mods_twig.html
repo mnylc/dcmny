@@ -7,8 +7,8 @@
 	<title>{{ data.title }}</title>
 </titleInfo>
 
-{% if  attribute(data, 'name_personal') %}
-{% for name in attribute(data, 'name_personal')|split (';') %}
+{% if  attribute(data, 'personal_name') %}
+{% for name in attribute(data, 'personal_name')|split (';') %}
 <name authority="naf" type="personal">
 	<namePart>{{ name|trim }}</namePart>
 	<role>
@@ -18,8 +18,8 @@
 {% endfor %}
 {% endif %}
 
-{% if  attribute(data, 'name_corporate') %}
-{% for name in attribute(data, 'name_corporate')|split (';') %}
+{% if  attribute(data, 'corporate_name') %}
+{% for name in attribute(data, 'corporate_name')|split (';') %}
 <name authority="naf" type="corporate">
 	<namePart>{{ name|trim }}</namePart>
 	<role>
@@ -29,8 +29,8 @@
 {% endfor %}
 {% endif %}
 
-{% if  attribute(data, 'creator_personal') %}
-{% for creator in attribute(data, 'creator_personal')|split (';') %}
+{% if  attribute(data, 'personal_name_creator') %}
+{% for creator in attribute(data, 'personal_name_creator')|split (';') %}
 <name authority="naf" type="personal">
 	<namePart>{{ creator|trim }}</namePart>
 	<role>
@@ -40,8 +40,8 @@
 {% endfor %}
 {% endif %}
 
-{% if  attribute(data, 'creator_corporate') %}
-{% for creator in attribute(data, 'creator_corporate')|split (';') %}
+{% if  attribute(data, 'corporate_name_creator') %}
+{% for creator in attribute(data, 'corporate_name_creator')|split (';') %}
 <name authority="naf" type="corporate">
 	<namePart>{{ creator|trim }}</namePart>
 	<role>
@@ -51,8 +51,8 @@
 {% endfor %}
 {% endif %}
 
-{% if  attribute(data, 'contributor_personal') %}
-{% for contributor in attribute(data, 'contributor_personal')|split (';') %}
+{% if  attribute(data, 'personal_name_contributor') %}
+{% for contributor in attribute(data, 'personal_name_contributor')|split (';') %}
 <name authority="naf" type="personal">
 	<namePart>{{ contributor|trim }}</namePart>
 	<role>
@@ -62,8 +62,8 @@
 {% endfor %}
 {% endif %}
 
-{% if  attribute(data, 'contributor_corporate') %}
-{% for contributor in attribute(data, 'contributor_corporate')|split (';') %}
+{% if  attribute(data, 'corporate_name_contributor') %}
+{% for contributor in attribute(data, 'corporate_name_contributor')|split (';') %}
 <name authority="naf" type="corporate">
 	<namePart>{{ contributor|trim }}</namePart>
 	<role>
@@ -81,16 +81,16 @@
 {% endfor %}
 {% endif %}
 
-{% if  attribute(data, 'subject_geographic') %}
-{% for geographic in attribute(data, 'subject_geographic')|split (';') %}
+{% if  attribute(data, 'location') %}
+{% for geographic in attribute(data, 'location')|split (';') %}
 <subject authority="fast">
 	<geographic>{{ geographic|trim }}</geographic>
 </subject>
 {% endfor %}
 {% endif %}
 
-{% if  attribute(data, 'subject_temporal') %}
-{% for temporal in attribute(data, 'subject_temporal')|split (';') %}
+{% if  attribute(data, 'time_period') %}
+{% for temporal in attribute(data, 'time_period')|split (';') %}
 <subject authority="fast">
 	<temporal>{{ temporal|trim }}</temporal>
 </subject>
@@ -107,8 +107,8 @@
 {% endfor %}
 {% endif %} 
 
-{% if  attribute(data, 'subject_name_personal') %}
-{% for subjectname in attribute(data, 'subject_name_personal')|split (';') %}
+{% if  attribute(data, 'subject_personal_name') %}
+{% for subjectname in attribute(data, 'subject_personal_name')|split (';') %}
 <subject authority="fast">
 	<name type="personal">
 		<namePart>{{ subjectname|trim }}</namePart>
@@ -117,8 +117,8 @@
 {% endfor %}
 {% endif %} 
 
-{% if  attribute(data, 'subject_name_corporate') %}
-{% for subjectname in attribute(data, 'subject_name_corporate')|split (';') %}
+{% if  attribute(data, 'subject_corporate_name') %}
+{% for subjectname in attribute(data, 'subject_corporate_name')|split (';') %}
 <subject authority="fast">
 	<name type="corporate">
 		<namePart>{{ subjectname|trim }}</namePart>
@@ -154,12 +154,17 @@
 </originInfo>
 {% endif %} 
 
-<abstract>{{ data.abstract }}</abstract>
-<note>{{ data.note }}</note>
+{% if attribute(data, 'description') %}
+<abstract>{{ data.description }}</abstract>
+{% if attribute(data, 'description') %}
 
-{% if  attribute(data, 'type_of_resource') %}
-{% for type in attribute(data, 'type_of_resource')|split (';') %}
-<typeOfResource>{{ data.type_of_resource }}</typeOfResource>
+{% if attribute(data, 'note') %}
+<note>{{ data.note }}</note>
+{% endif %} 
+
+{% if  attribute(data, 'type') %}
+{% for type in attribute(data, 'type')|split (';') %}
+<typeOfResource>{{ data.type }}</typeOfResource>
 {% endfor %}
 {% endif %} 
   
@@ -169,7 +174,7 @@
 {% endfor %}
 {% endif %} 
   
-{% if attribute(data, 'extent') or attribute(data, 'form') %}
+{% if attribute(data, 'extent') or attribute(data, 'form') or attribute(data, 'digital_format') or attribute(data, 'digital_origin' %}
 <physicalDescription>
 	{% if attribute(data, 'form') %}
 	<form>{{ data.form }}</form>
@@ -190,10 +195,10 @@
 {% endfor %}
 {% endif %} 
 
-{% if attribute(data, 'relation') %}
+{% if attribute(data, 'related_resource') %}
 <relatedItem>
 	<titleInfo>
-		<title>{{ data.relation }}</title>
+		<title>{{ data.related_resource }}</title>
 	</titleInfo>
 </relatedItem>
 {% endif %} 
@@ -210,8 +215,8 @@
 </relatedItem>
 {% endif %} 
   
-<accessCondition>{{ data.access_condition }}</accessCondition>
-<note type="ownership">{{ data.owning_institution_held_by }}</note>
+<accessCondition>{{ data.rights }}</accessCondition>
+<note type="ownership">{{ data.owning_institution }}</note>
 <identifier type="local">{{ data.identifier }}</identifier>
 
 <recordInfo>
