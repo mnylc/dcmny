@@ -156,7 +156,7 @@
 
 {% if attribute(data, 'description') %}
 <abstract>{{ data.description }}</abstract>
-{% if attribute(data, 'description') %}
+{% endif %} 
 
 {% if attribute(data, 'note') %}
 <note>{{ data.note }}</note>
@@ -174,7 +174,7 @@
 {% endfor %}
 {% endif %} 
   
-{% if attribute(data, 'extent') or attribute(data, 'form') or attribute(data, 'digital_format') or attribute(data, 'digital_origin' %}
+{% if attribute(data, 'extent') or attribute(data, 'form') or attribute(data, 'digital_format') or attribute(data, 'digital_origin') %}
 <physicalDescription>
 	{% if attribute(data, 'form') %}
 	<form>{{ data.form }}</form>
