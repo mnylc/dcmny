@@ -43,7 +43,7 @@
   </xsl:template>
   
   <xsl:template match="mods:subject[./mods:name[@type='personal']/namePart[not(contains(./text(), 'null'))]]">
-    <xsl:variable name="namelist" select="tokenize(., ';')"/>
+    <xsl:variable name="namelist" select="tokenize(replace(., '&quot;', ''), ';')"/>
     <xsl:for-each select="$namelist">
       <xsl:element name="subject" namespace="http://www.loc.gov/mods/v3">
         <xsl:attribute name="authority">fast</xsl:attribute>
@@ -58,7 +58,7 @@
   </xsl:template>
   
   <xsl:template match="mods:subject[./mods:name[@type='corporate']/namePart[not(contains(./text(), 'null'))]]">
-    <xsl:variable name="namelist" select="tokenize(., ';')"/>
+    <xsl:variable name="namelist" select="tokenize(replace(., '&quot;', ''), ';')"/>
     <xsl:for-each select="$namelist">
       <xsl:element name="subject" namespace="http://www.loc.gov/mods/v3">
         <xsl:attribute name="authority">fast</xsl:attribute>
