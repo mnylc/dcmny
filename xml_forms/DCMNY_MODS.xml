@@ -87,7 +87,7 @@
                   <access>TRUE</access>
                   <collapsed>FALSE</collapsed>
                   <collapsible>FALSE</collapsible>
-                  <description>The type of title.</description>
+                  <description>The type of title. Should be left blank for main title of resource.</description>
                   <disabled>FALSE</disabled>
                   <executes_submit_callback>FALSE</executes_submit_callback>
                   <multiple>FALSE</multiple>
@@ -123,14 +123,14 @@
               </element>
               <element name="title">
                 <properties>
-                  <type>textfield</type>
+                  <type>textarea</type>
                   <access>TRUE</access>
                   <collapsed>FALSE</collapsed>
                   <collapsible>FALSE</collapsible>
                   <disabled>FALSE</disabled>
                   <executes_submit_callback>FALSE</executes_submit_callback>
                   <multiple>FALSE</multiple>
-                  <required>TRUE</required>
+                  <required>FALSE</required>
                   <resizable>FALSE</resizable>
                   <title>Title</title>
                   <tree>TRUE</tree>
@@ -171,7 +171,7 @@
           <multiple>FALSE</multiple>
           <required>FALSE</required>
           <resizable>FALSE</resizable>
-          <title>Name</title>
+          <title>Name (Personal Name or Corporate Name)</title>
           <tree>TRUE</tree>
         </properties>
         <children>
@@ -214,6 +214,7 @@
                   <access>TRUE</access>
                   <collapsed>FALSE</collapsed>
                   <collapsible>FALSE</collapsible>
+                  <description>Select the type of name: personal or corporate</description>
                   <disabled>FALSE</disabled>
                   <executes_submit_callback>FALSE</executes_submit_callback>
                   <multiple>FALSE</multiple>
@@ -224,7 +225,7 @@
                   </options>
                   <required>FALSE</required>
                   <resizable>FALSE</resizable>
-                  <title>Type</title>
+                  <title>Type of Name</title>
                   <tree>TRUE</tree>
                   <actions>
                     <create>
@@ -254,13 +255,13 @@
                   <access>TRUE</access>
                   <collapsed>FALSE</collapsed>
                   <collapsible>FALSE</collapsible>
-                  <description>The authority file from which the name was taken. </description>
+                  <description>The authority file from which the name was taken. Leave blank if name does not come from a controlled vocabulary</description>
                   <disabled>FALSE</disabled>
                   <executes_submit_callback>FALSE</executes_submit_callback>
                   <multiple>FALSE</multiple>
                   <options>
                     <index key=""/>
-                    <naf>naf</naf>
+                    <naf>lcnaf</naf>
                     <fast>fast</fast>
                     <ulan>ulan</ulan>
                     <viaf>viaf</viaf>
@@ -297,7 +298,7 @@
                   <access>TRUE</access>
                   <collapsed>FALSE</collapsed>
                   <collapsible>FALSE</collapsible>
-                  <description>Person or corporate entity responsible for creating or contributing to the original resource. Check LCNAF (http://id.loc.gov/authorities/names.html) for form of name and use if present</description>
+                  <description>Person or corporate entity responsible for creating or contributing to the original resource.</description>
                   <disabled>FALSE</disabled>
                   <executes_submit_callback>FALSE</executes_submit_callback>
                   <multiple>FALSE</multiple>
@@ -336,7 +337,7 @@
                   <access>TRUE</access>
                   <collapsed>FALSE</collapsed>
                   <collapsible>FALSE</collapsible>
-                  <description>Designates the relationship (role) of the entity recorded in name to the resource described in the record. Select term from MARC Relator Term list (http://id.loc.gov/vocabulary/relators.html). The first letter of the first Role term should be capitalized.</description>
+                  <description>Designates the relationship (role) of the entity recorded in name to the resource described in the record. The first letter of the first Role term should be capitalized.</description>
                   <disabled>FALSE</disabled>
                   <executes_submit_callback>FALSE</executes_submit_callback>
                   <multiple>FALSE</multiple>
@@ -418,35 +419,26 @@
                   <path>self::node()</path>
                   <context>self</context>
                 </update>
-                <delete>NULL</delete>
+                <delete>
+                  <path>self::node()</path>
+                  <context>self</context>
+                </delete>
               </actions>
             </properties>
             <children>
               <element name="typeOfResource">
                 <properties>
-                  <type>select</type>
+                  <type>textfield</type>
                   <access>TRUE</access>
                   <collapsed>FALSE</collapsed>
                   <collapsible>FALSE</collapsible>
-                  <description>Use default MODS Type of Resource values, http://www.loc.gov/standards/mods/userguide/typeofresource.html</description>
+                  <description>Select default MODS Type of Resource values (https://www.loc.gov/standards/mods/userguide/typeofresource.html)</description>
                   <disabled>FALSE</disabled>
                   <executes_submit_callback>FALSE</executes_submit_callback>
                   <multiple>FALSE</multiple>
-                  <options>
-                    <index key=""/>
-                    <text>text</text>
-                    <cartographic>cartographic</cartographic>
-                    <index key="notated music">notated music</index>
-                    <index key="sound recording">sound recording</index>
-                    <index key="still image">still image</index>
-                    <index key="moving image">moving image</index>
-                    <index key="three dimensional object ">three dimensional object </index>
-                    <index key="software, multimedia">software, multimedia</index>
-                    <index key="mixed material">mixed material</index>
-                  </options>
                   <required>FALSE</required>
                   <resizable>FALSE</resizable>
-                  <title>Type of Resource</title>
+                  <title>Type </title>
                   <tree>TRUE</tree>
                   <actions>
                     <create>NULL</create>
@@ -517,11 +509,11 @@
             <children>
               <element name="authority">
                 <properties>
-                  <type>select</type>
+                  <type>textfield</type>
                   <access>TRUE</access>
                   <collapsed>FALSE</collapsed>
                   <collapsible>FALSE</collapsible>
-                  <description>Prefer use of controlled vocabulary, recommend AAT (http://www.getty.edu/research/tools/vocabularies/aat/). 
+                  <description>Indicate controlled vocabulary (prefer use of AAT)
 </description>
                   <disabled>FALSE</disabled>
                   <executes_submit_callback>FALSE</executes_submit_callback>
@@ -564,7 +556,7 @@
                   <access>TRUE</access>
                   <collapsed>FALSE</collapsed>
                   <collapsible>FALSE</collapsible>
-                  <description>Used to describe the form of the object. AAT terms should be entered in lowercase</description>
+                  <description>Used to describe the form of the object. AAT terms should be entered in lowercase.</description>
                   <disabled>FALSE</disabled>
                   <executes_submit_callback>FALSE</executes_submit_callback>
                   <multiple>FALSE</multiple>
@@ -605,7 +597,7 @@
           <multiple>FALSE</multiple>
           <required>FALSE</required>
           <resizable>FALSE</resizable>
-          <title>Publication Info</title>
+          <title>Publication Information </title>
           <tree>TRUE</tree>
           <actions>
             <create>
@@ -728,19 +720,60 @@
               </actions>
             </properties>
             <children>
+              <element name="keyDate">
+                <properties>
+                  <type>select</type>
+                  <access>TRUE</access>
+                  <collapsed>FALSE</collapsed>
+                  <collapsible>FALSE</collapsible>
+                  <description>This value is used so that a particular date may be distinguished among several dates. Thus for example, when sorting MODS records by date, a date with keyDate="yes" would be the date to sort on. It should occur only for one date at most in a given record.</description>
+                  <disabled>FALSE</disabled>
+                  <executes_submit_callback>FALSE</executes_submit_callback>
+                  <multiple>FALSE</multiple>
+                  <options>
+                    <index key=""/>
+                    <yes>yes</yes>
+                  </options>
+                  <required>FALSE</required>
+                  <resizable>FALSE</resizable>
+                  <title>Key Date</title>
+                  <tree>TRUE</tree>
+                  <actions>
+                    <create>
+                      <path>self::node()</path>
+                      <context>parent</context>
+                      <schema/>
+                      <type>attribute</type>
+                      <prefix>NULL</prefix>
+                      <value>keyDate</value>
+                    </create>
+                    <read>
+                      <path>@keyDate</path>
+                      <context>parent</context>
+                    </read>
+                    <update>
+                      <path>self::node()</path>
+                      <context>self</context>
+                    </update>
+                    <delete>NULL</delete>
+                  </actions>
+                </properties>
+                <children/>
+              </element>
               <element name="encoding">
                 <properties>
                   <type>select</type>
                   <access>TRUE</access>
                   <collapsed>FALSE</collapsed>
                   <collapsible>FALSE</collapsible>
+                  <description>Prefer use of w3cdtf. Leave blank if not following selected encoding standard.</description>
                   <disabled>FALSE</disabled>
                   <executes_submit_callback>FALSE</executes_submit_callback>
                   <multiple>FALSE</multiple>
                   <options>
                     <index key=""/>
-                    <w3cdtf>w3cdtf</w3cdtf>
                     <iso8601>ISO8601</iso8601>
+                    <w3cdtf>w3cdtf</w3cdtf>
                   </options>
                   <required>FALSE</required>
                   <resizable>FALSE</resizable>
@@ -774,14 +807,15 @@
                   <access>TRUE</access>
                   <collapsed>FALSE</collapsed>
                   <collapsible>FALSE</collapsible>
+                  <description>Indicate here whether date should be qualified by questionable, inferred or approximate. Leave blank if no qualifier necessary.</description>
                   <disabled>FALSE</disabled>
                   <executes_submit_callback>FALSE</executes_submit_callback>
                   <multiple>FALSE</multiple>
                   <options>
                     <index key=""/>
+                    <approximate>approximate</approximate>
                     <inferred>inferred</inferred>
                     <questionable>questionable</questionable>
-                    <approximate>approximate</approximate>
                   </options>
                   <required>FALSE</required>
                   <resizable>FALSE</resizable>
@@ -851,7 +885,7 @@
               <multiple>FALSE</multiple>
               <required>FALSE</required>
               <resizable>FALSE</resizable>
-              <title>Date Created Range Start</title>
+              <title>Date Created Range (Start)</title>
               <tree>TRUE</tree>
               <actions>
                 <create>
@@ -871,12 +905,53 @@
               </actions>
             </properties>
             <children>
+              <element name="keyDate">
+                <properties>
+                  <type>select</type>
+                  <access>TRUE</access>
+                  <collapsed>FALSE</collapsed>
+                  <collapsible>FALSE</collapsible>
+                  <description>This value is used so that a particular date may be distinguished among several dates. Thus for example, when sorting MODS records by date, a date with keyDate="yes" would be the date to sort on. It should occur only for one date at most in a given record.</description>
+                  <disabled>FALSE</disabled>
+                  <executes_submit_callback>FALSE</executes_submit_callback>
+                  <multiple>FALSE</multiple>
+                  <options>
+                    <index key=""/>
+                    <yes>yes</yes>
+                  </options>
+                  <required>FALSE</required>
+                  <resizable>FALSE</resizable>
+                  <title>Key Date</title>
+                  <tree>TRUE</tree>
+                  <actions>
+                    <create>
+                      <path>self::node()</path>
+                      <context>parent</context>
+                      <schema/>
+                      <type>attribute</type>
+                      <prefix>NULL</prefix>
+                      <value>keyDate</value>
+                    </create>
+                    <read>
+                      <path>@keyDate</path>
+                      <context>parent</context>
+                    </read>
+                    <update>
+                      <path>self::node()</path>
+                      <context>self</context>
+                    </update>
+                    <delete>NULL</delete>
+                  </actions>
+                </properties>
+                <children/>
+              </element>
               <element name="encoding">
                 <properties>
                   <type>select</type>
                   <access>TRUE</access>
                   <collapsed>FALSE</collapsed>
                   <collapsible>FALSE</collapsible>
+                  <description>Prefer use of w3cdtf. Leave blank if not following selected encoding standard.</description>
                   <disabled>FALSE</disabled>
                   <executes_submit_callback>FALSE</executes_submit_callback>
                   <multiple>FALSE</multiple>
@@ -917,6 +992,7 @@
                   <access>TRUE</access>
                   <collapsed>FALSE</collapsed>
                   <collapsible>FALSE</collapsible>
+                  <description>Indicate here whether date should be qualified by questionable, inferred or approximate. Leave blank if no qualifier necessary.</description>
                   <disabled>FALSE</disabled>
                   <executes_submit_callback>FALSE</executes_submit_callback>
                   <multiple>FALSE</multiple>
@@ -958,6 +1034,7 @@
                   <access>TRUE</access>
                   <collapsed>FALSE</collapsed>
                   <collapsible>FALSE</collapsible>
+                  <description>Use for the beginning date in a date range.</description>
                   <disabled>FALSE</disabled>
                   <executes_submit_callback>FALSE</executes_submit_callback>
                   <multiple>FALSE</multiple>
@@ -993,7 +1070,7 @@
               <multiple>FALSE</multiple>
               <required>FALSE</required>
               <resizable>FALSE</resizable>
-              <title>Date Created Range End</title>
+              <title>Date Created Range (End)</title>
               <tree>TRUE</tree>
               <actions>
                 <create>
@@ -1019,6 +1096,7 @@
                   <access>TRUE</access>
                   <collapsed>FALSE</collapsed>
                   <collapsible>FALSE</collapsible>
+                  <description>Prefer use of w3cdtf. Leave blank if not following selected encoding standard.</description>
                   <disabled>FALSE</disabled>
                   <executes_submit_callback>FALSE</executes_submit_callback>
                   <multiple>FALSE</multiple>
@@ -1059,6 +1137,7 @@
                   <access>TRUE</access>
                   <collapsed>FALSE</collapsed>
                   <collapsible>FALSE</collapsible>
+                  <description>Indicate here whether date should be qualified by questionable, inferred or approximate. Leave blank if no qualifier necessary.</description>
                   <disabled>FALSE</disabled>
                   <executes_submit_callback>FALSE</executes_submit_callback>
                   <multiple>FALSE</multiple>
@@ -1100,6 +1179,7 @@
                   <access>TRUE</access>
                   <collapsed>FALSE</collapsed>
                   <collapsible>FALSE</collapsible>
+                  <description>Use for the end date in a date range.</description>
                   <disabled>FALSE</disabled>
                   <executes_submit_callback>FALSE</executes_submit_callback>
                   <multiple>FALSE</multiple>
@@ -1155,19 +1235,60 @@
               </actions>
             </properties>
             <children>
+              <element name="keyDate">
+                <properties>
+                  <type>select</type>
+                  <access>TRUE</access>
+                  <collapsed>FALSE</collapsed>
+                  <collapsible>FALSE</collapsible>
+                  <description>This value is used so that a particular date may be distinguished among several dates. Thus for example, when sorting MODS records by date, a date with keyDate="yes" would be the date to sort on. It should occur only for one date at most in a given record.</description>
+                  <disabled>FALSE</disabled>
+                  <executes_submit_callback>FALSE</executes_submit_callback>
+                  <multiple>FALSE</multiple>
+                  <options>
+                    <index key=""/>
+                    <yes>yes</yes>
+                  </options>
+                  <required>FALSE</required>
+                  <resizable>FALSE</resizable>
+                  <title>Key Date</title>
+                  <tree>TRUE</tree>
+                  <actions>
+                    <create>
+                      <path>self::node()</path>
+                      <context>parent</context>
+                      <schema/>
+                      <type>attribute</type>
+                      <prefix>NULL</prefix>
+                      <value>keyDate</value>
+                    </create>
+                    <read>
+                      <path>@keyDate</path>
+                      <context>parent</context>
+                    </read>
+                    <update>
+                      <path>self::node()</path>
+                      <context>self</context>
+                    </update>
+                    <delete>NULL</delete>
+                  </actions>
+                </properties>
+                <children/>
+              </element>
               <element name="encoding">
                 <properties>
                   <type>select</type>
                   <access>TRUE</access>
                   <collapsed>FALSE</collapsed>
                   <collapsible>FALSE</collapsible>
+                  <description>Prefer use of w3cdtf. Leave blank if not following selected encoding standard.</description>
                   <disabled>FALSE</disabled>
                   <executes_submit_callback>FALSE</executes_submit_callback>
                   <multiple>FALSE</multiple>
                   <options>
                     <index key=""/>
-                    <w3cdtf>w3cdtf</w3cdtf>
                     <iso8601>ISO8601</iso8601>
+                    <w3cdtf>w3cdtf</w3cdtf>
                   </options>
                   <required>FALSE</required>
                   <resizable>FALSE</resizable>
@@ -1201,6 +1322,7 @@
                   <access>TRUE</access>
                   <collapsed>FALSE</collapsed>
                   <collapsible>FALSE</collapsible>
+                  <description>Indicate here whether date should be qualified by questionable, inferred or approximate. Leave blank if no qualifier necessary.</description>
                   <disabled>FALSE</disabled>
                   <executes_submit_callback>FALSE</executes_submit_callback>
                   <multiple>FALSE</multiple>
@@ -1278,7 +1400,7 @@
               <multiple>FALSE</multiple>
               <required>FALSE</required>
               <resizable>FALSE</resizable>
-              <title>Date Issued Range Start</title>
+              <title>Date Issued Range (Start)</title>
               <tree>TRUE</tree>
               <actions>
                 <create>
@@ -1298,12 +1420,53 @@
               </actions>
             </properties>
             <children>
+              <element name="keyDate">
+                <properties>
+                  <type>select</type>
+                  <access>TRUE</access>
+                  <collapsed>FALSE</collapsed>
+                  <collapsible>FALSE</collapsible>
+                  <description>This value is used so that a particular date may be distinguished among several dates. Thus for example, when sorting MODS records by date, a date with keyDate="yes" would be the date to sort on. It should occur only for one date at most in a given record.</description>
+                  <disabled>FALSE</disabled>
+                  <executes_submit_callback>FALSE</executes_submit_callback>
+                  <multiple>FALSE</multiple>
+                  <options>
+                    <index key=""/>
+                    <yes>yes</yes>
+                  </options>
+                  <required>FALSE</required>
+                  <resizable>FALSE</resizable>
+                  <title>Key Date</title>
+                  <tree>TRUE</tree>
+                  <actions>
+                    <create>
+                      <path>self::node()</path>
+                      <context>parent</context>
+                      <schema/>
+                      <type>attribute</type>
+                      <prefix>NULL</prefix>
+                      <value>keyDate</value>
+                    </create>
+                    <read>
+                      <path>@keyDate</path>
+                      <context>parent</context>
+                    </read>
+                    <update>
+                      <path>self::node()</path>
+                      <context>self</context>
+                    </update>
+                    <delete>NULL</delete>
+                  </actions>
+                </properties>
+                <children/>
+              </element>
               <element name="encoding">
                 <properties>
                   <type>select</type>
                   <access>TRUE</access>
                   <collapsed>FALSE</collapsed>
                   <collapsible>FALSE</collapsible>
+                  <description>Prefer use of w3cdtf. Leave blank if not following selected encoding standard.</description>
                   <disabled>FALSE</disabled>
                   <executes_submit_callback>FALSE</executes_submit_callback>
                   <multiple>FALSE</multiple>
@@ -1344,6 +1507,7 @@
                   <access>TRUE</access>
                   <collapsed>FALSE</collapsed>
                   <collapsible>FALSE</collapsible>
+                  <description>Indicate here whether date should be qualified by questionable, inferred or approximate. Leave blank if no qualifier necessary.</description>
                   <disabled>FALSE</disabled>
                   <executes_submit_callback>FALSE</executes_submit_callback>
                   <multiple>FALSE</multiple>
@@ -1385,6 +1549,7 @@
                   <access>TRUE</access>
                   <collapsed>FALSE</collapsed>
                   <collapsible>FALSE</collapsible>
+                  <description>Use for the beginning date in a date range.</description>
                   <disabled>FALSE</disabled>
                   <executes_submit_callback>FALSE</executes_submit_callback>
                   <multiple>FALSE</multiple>
@@ -1420,7 +1585,7 @@
               <multiple>FALSE</multiple>
               <required>FALSE</required>
               <resizable>FALSE</resizable>
-              <title>Date Issued Range End</title>
+              <title>Date Issued Range (End)</title>
               <tree>TRUE</tree>
               <actions>
                 <create>
@@ -1446,6 +1611,7 @@
                   <access>TRUE</access>
                   <collapsed>FALSE</collapsed>
                   <collapsible>FALSE</collapsible>
+                  <description>Prefer use of w3cdtf. Leave blank if not following selected encoding standard.</description>
                   <disabled>FALSE</disabled>
                   <executes_submit_callback>FALSE</executes_submit_callback>
                   <multiple>FALSE</multiple>
@@ -1486,6 +1652,7 @@
                   <access>TRUE</access>
                   <collapsed>FALSE</collapsed>
                   <collapsible>FALSE</collapsible>
+                  <description>Indicate here whether date should be qualified by questionable, inferred or approximate. Leave blank if no qualifier necessary.</description>
                   <disabled>FALSE</disabled>
                   <executes_submit_callback>FALSE</executes_submit_callback>
                   <multiple>FALSE</multiple>
@@ -1527,6 +1694,7 @@
                   <access>TRUE</access>
                   <collapsed>FALSE</collapsed>
                   <collapsible>FALSE</collapsible>
+                  <description>Use for the end date in a date range.</description>
                   <disabled>FALSE</disabled>
                   <executes_submit_callback>FALSE</executes_submit_callback>
                   <multiple>FALSE</multiple>
@@ -1610,8 +1778,7 @@
                   <access>TRUE</access>
                   <collapsed>FALSE</collapsed>
                   <collapsible>FALSE</collapsible>
-                  <default_value>iso639-2b</default_value>
-                  <description>Use ISO 639-2, three-letter codes.</description>
+                  <description>Prefer use of iso639-2b.</description>
                   <disabled>FALSE</disabled>
                   <executes_submit_callback>FALSE</executes_submit_callback>
                   <multiple>FALSE</multiple>
@@ -1624,9 +1791,16 @@
                   <title>Authority</title>
                   <tree>TRUE</tree>
                   <actions>
-                    <create>NULL</create>
+                    <create>
+                      <path>mods:languageTerm</path>
+                      <context>parent</context>
+                      <schema/>
+                      <type>attribute</type>
+                      <prefix>NULL</prefix>
+                      <value>authority</value>
+                    </create>
                     <read>
-                      <path>mods:languageTerm[@type='text']/@authority</path>
+                      <path>mods:languageTerm[@type='text']/@authority | mods:languageTerm[@type='code']/@authority</path>
                       <context>parent</context>
                     </read>
                     <update>
@@ -1686,6 +1860,7 @@
                   <access>TRUE</access>
                   <collapsed>FALSE</collapsed>
                   <collapsible>FALSE</collapsible>
+                  <description>A description of the language in which the content of the resource is expressed. Strongly recommended for textual material. Text terms primarily used in migrated collections from CONTENTdm.</description>
                   <disabled>FALSE</disabled>
                   <executes_submit_callback>FALSE</executes_submit_callback>
                   <multiple>FALSE</multiple>
@@ -1700,11 +1875,11 @@
                       <schema/>
                       <type>xml</type>
                       <prefix>NULL</prefix>
-                      <value>&lt;languageTerm type="text"&gt;%value%&lt;/languageTerm&gt;</value>
+                      <value>&lt;languageTerm type="text" authority=""&gt;%value%&lt;/languageTerm&gt;</value>
                     </create>
                     <read>
                       <path>mods:languageTerm[@type='text']</path>
-                      <context>document</context>
+                      <context>parent</context>
                     </read>
                     <update>
                       <path>self::node()</path>
@@ -1798,7 +1973,7 @@
               <access>TRUE</access>
               <collapsed>FALSE</collapsed>
               <collapsible>FALSE</collapsible>
-              <description>A statement of the number and specific material of the units of the source resource. Generally size or duration information</description>
+              <description>A statement of the number and specific material of the units of the source resource. Generally size or duration information.</description>
               <disabled>FALSE</disabled>
               <executes_submit_callback>FALSE</executes_submit_callback>
               <multiple>FALSE</multiple>
@@ -1834,7 +2009,7 @@
               <access>TRUE</access>
               <collapsed>FALSE</collapsed>
               <collapsible>FALSE</collapsible>
-              <description>The method by which a resource achieved digital form</description>
+              <description>The method by which a resource achieved digital form. Use default MODS values. </description>
               <disabled>FALSE</disabled>
               <executes_submit_callback>FALSE</executes_submit_callback>
               <multiple>FALSE</multiple>
@@ -1920,7 +2095,7 @@
               <access>TRUE</access>
               <collapsed>FALSE</collapsed>
               <collapsible>FALSE</collapsible>
-              <description>General textual information about the physical condition of the source resource</description>
+              <description>General textual information about the physical condition of the source resource. Used in collections migrated from CONTENTdm.</description>
               <disabled>FALSE</disabled>
               <executes_submit_callback>FALSE</executes_submit_callback>
               <multiple>FALSE</multiple>
@@ -2084,7 +2259,7 @@
           <multiple>FALSE</multiple>
           <required>FALSE</required>
           <resizable>FALSE</resizable>
-          <title>Notes</title>
+          <title>Note(s)</title>
           <tree>TRUE</tree>
         </properties>
         <children>
@@ -2172,6 +2347,7 @@
                   <access>TRUE</access>
                   <collapsed>FALSE</collapsed>
                   <collapsible>FALSE</collapsible>
+                  <description>Display Label attribute primarily used with collections migrated from CONTENTdm.</description>
                   <disabled>FALSE</disabled>
                   <executes_submit_callback>FALSE</executes_submit_callback>
                   <multiple>FALSE</multiple>
@@ -2304,15 +2480,16 @@
                   <access>TRUE</access>
                   <collapsed>FALSE</collapsed>
                   <collapsible>FALSE</collapsible>
-                  <description>Terms should come from a controlled vocabulary, recommend FAST (http://fast.oclc.org/)</description>
+                  <description>Indicate use of controlled vocabulary here. Recommend the use of FAST. Leave blank if term or name does not come from a controlled vocabulary</description>
                   <disabled>FALSE</disabled>
                   <executes_submit_callback>FALSE</executes_submit_callback>
                   <multiple>FALSE</multiple>
                   <options>
                     <index key=""/>
                     <fast>fast</fast>
-                    <lcsh>Lcsh</lcsh>
-                    <lctgm>Lctgm</lctgm>
+                    <naf>lcnaf</naf>
+                    <lcsh>lcsh</lcsh>
+                    <lctgm>lctgm</lctgm>
                   </options>
                   <required>FALSE</required>
                   <resizable>FALSE</resizable>
@@ -2351,7 +2528,7 @@
                   <multiple>FALSE</multiple>
                   <required>FALSE</required>
                   <resizable>FALSE</resizable>
-                  <title>Topic</title>
+                  <title>Subject-Topic</title>
                   <tree>TRUE</tree>
                   <actions>
                     <create>
@@ -2415,7 +2592,7 @@
                   <multiple>FALSE</multiple>
                   <required>FALSE</required>
                   <resizable>FALSE</resizable>
-                  <title>Geographic Subject</title>
+                  <title>Location</title>
                   <tree>TRUE</tree>
                   <actions>
                     <create>
@@ -2508,6 +2685,7 @@
                       <access>TRUE</access>
                       <collapsed>FALSE</collapsed>
                       <collapsible>FALSE</collapsible>
+                      <description>Used with collections migrated from CONTENTdm.</description>
                       <disabled>FALSE</disabled>
                       <executes_submit_callback>FALSE</executes_submit_callback>
                       <multiple>FALSE</multiple>
@@ -2586,7 +2764,7 @@
                   <multiple>FALSE</multiple>
                   <required>FALSE</required>
                   <resizable>FALSE</resizable>
-                  <title>Names as subject</title>
+                  <title>Subject-Name (Personal and Corporate)</title>
                   <tree>TRUE</tree>
                   <actions>
                     <create>
@@ -2615,6 +2793,7 @@
                       <access>TRUE</access>
                       <collapsed>FALSE</collapsed>
                       <collapsible>FALSE</collapsible>
+                      <description>Select the type of name: personal or corporate</description>
                       <disabled>FALSE</disabled>
                       <executes_submit_callback>FALSE</executes_submit_callback>
                       <multiple>FALSE</multiple>
@@ -2701,7 +2880,7 @@
                   <multiple>FALSE</multiple>
                   <required>FALSE</required>
                   <resizable>FALSE</resizable>
-                  <title>Temporal</title>
+                  <title>Time Period</title>
                   <tree>TRUE</tree>
                   <actions>
                     <create>
@@ -2770,7 +2949,7 @@
           <multiple>FALSE</multiple>
           <required>FALSE</required>
           <resizable>FALSE</resizable>
-          <title>Related Resources </title>
+          <title>Related Resource(s)</title>
           <tree>TRUE</tree>
         </properties>
         <children>
@@ -2797,7 +2976,7 @@
                   <value>&lt;relatedItem&gt;&lt;titleInfo&gt;&lt;title&gt;%value%&lt;/title&gt;&lt;/titleInfo&gt;&lt;/relatedItem&gt;</value>
                 </create>
                 <read>
-                  <path>mods:relatedItem/mods:titleInfo/mods:title</path>
+                  <path>mods:relatedItem[not(@*)]/mods:titleInfo/mods:title</path>
                   <context>parent</context>
                 </read>
                 <update>
@@ -2823,7 +3002,7 @@
               <multiple>FALSE</multiple>
               <required>FALSE</required>
               <resizable>FALSE</resizable>
-              <title>Related URL</title>
+              <title>Related Website</title>
               <tree>TRUE</tree>
               <actions>
                 <create>
@@ -2871,7 +3050,7 @@
                   <schema/>
                   <type>xml</type>
                   <prefix>NULL</prefix>
-                  <value>&lt;relatedItem type="host"&gt;&lt;titleInfo&gt;&lt;title&gt;%value%&lt;/title&gt;&lt;/titleInfo&gt;&lt;/relatedItem&gt;</value>
+                  <value>&lt;relatedItem type="host" displayLabel="Collection"&gt;&lt;titleInfo&gt;&lt;title&gt;%value%&lt;/title&gt;&lt;/titleInfo&gt;&lt;/relatedItem&gt;</value>
                 </create>
                 <read>
                   <path>mods:relatedItem[@type="host"]/mods:titleInfo/mods:title</path>
@@ -2891,7 +3070,7 @@
           </element>
           <element name="collectionDescription">
             <properties>
-              <type>textfield</type>
+              <type>textarea</type>
               <access>TRUE</access>
               <collapsed>FALSE</collapsed>
               <collapsible>FALSE</collapsible>
@@ -2934,12 +3113,13 @@
               <access>TRUE</access>
               <collapsed>FALSE</collapsed>
               <collapsible>FALSE</collapsible>
+              <description>Related Exhibit website. Used in collections migrated from CONTENTdm</description>
               <disabled>FALSE</disabled>
               <executes_submit_callback>FALSE</executes_submit_callback>
               <multiple>FALSE</multiple>
               <required>FALSE</required>
               <resizable>FALSE</resizable>
-              <title>Related Exhibit Information</title>
+              <title>Related Exhibit </title>
               <tree>TRUE</tree>
               <actions>
                 <create>
@@ -2969,12 +3149,13 @@
               <access>TRUE</access>
               <collapsed>FALSE</collapsed>
               <collapsible>FALSE</collapsible>
+              <description>Related Series information. Used in collections migrated from CONTENTdm.</description>
               <disabled>FALSE</disabled>
               <executes_submit_callback>FALSE</executes_submit_callback>
               <multiple>FALSE</multiple>
               <required>FALSE</required>
               <resizable>FALSE</resizable>
-              <title>Related Series Information</title>
+              <title>Related Series</title>
               <tree>TRUE</tree>
               <actions>
                 <create>
@@ -3004,6 +3185,7 @@
               <access>TRUE</access>
               <collapsed>FALSE</collapsed>
               <collapsible>FALSE</collapsible>
+              <description>Used in collections migrated from CONTENTdm</description>
               <disabled>FALSE</disabled>
               <executes_submit_callback>FALSE</executes_submit_callback>
               <multiple>FALSE</multiple>
@@ -3039,6 +3221,7 @@
               <access>TRUE</access>
               <collapsed>FALSE</collapsed>
               <collapsible>FALSE</collapsible>
+              <description>Used in collections migrated from CONTENTdm</description>
               <disabled>FALSE</disabled>
               <executes_submit_callback>FALSE</executes_submit_callback>
               <multiple>FALSE</multiple>
@@ -3074,7 +3257,7 @@
               <access>TRUE</access>
               <collapsed>FALSE</collapsed>
               <collapsible>FALSE</collapsible>
-              <description>Name of related resource(s) in which the source resource appeared.</description>
+              <description>Name of related resource(s) in which the source resource appeared. Used in collections migrated from CONTENTdm.</description>
               <disabled>FALSE</disabled>
               <executes_submit_callback>FALSE</executes_submit_callback>
               <multiple>FALSE</multiple>
@@ -3163,6 +3346,7 @@
                   <access>TRUE</access>
                   <collapsed>FALSE</collapsed>
                   <collapsible>FALSE</collapsible>
+                  <description>Select Local if using local identifier</description>
                   <disabled>FALSE</disabled>
                   <executes_submit_callback>FALSE</executes_submit_callback>
                   <multiple>FALSE</multiple>
@@ -3236,7 +3420,7 @@
           <access>TRUE</access>
           <collapsed>FALSE</collapsed>
           <collapsible>FALSE</collapsible>
-          <description>The institution or repository that holds the source resource or where it is available.</description>
+          <description>The institution or repository that holds the source resource or where it is available. Use in collections migrated from CONTENTdm</description>
           <disabled>FALSE</disabled>
           <executes_submit_callback>FALSE</executes_submit_callback>
           <multiple>FALSE</multiple>
@@ -3314,6 +3498,45 @@
               </actions>
             </properties>
             <children>
+              <element name="rightsType">
+                <properties>
+                  <type>select</type>
+                  <access>TRUE</access>
+                  <collapsed>FALSE</collapsed>
+                  <collapsible>FALSE</collapsible>
+                  <disabled>FALSE</disabled>
+                  <executes_submit_callback>FALSE</executes_submit_callback>
+                  <multiple>FALSE</multiple>
+                  <options>
+                    <index key=""/>
+                    <index key="use and reproduction">use and reproduction</index>
+                  </options>
+                  <required>FALSE</required>
+                  <resizable>FALSE</resizable>
+                  <title>Type</title>
+                  <tree>TRUE</tree>
+                  <actions>
+                    <create>
+                      <path>self::node()</path>
+                      <context>parent</context>
+                      <schema/>
+                      <type>attribute</type>
+                      <prefix>NULL</prefix>
+                      <value>type</value>
+                    </create>
+                    <read>
+                      <path>@type</path>
+                      <context>parent</context>
+                    </read>
+                    <update>
+                      <path>self::node()</path>
+                      <context>self</context>
+                    </update>
+                    <delete>NULL</delete>
+                  </actions>
+                </properties>
+                <children/>
+              </element>
               <element name="accessCondition">
                 <properties>
                   <type>textarea</type>

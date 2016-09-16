@@ -137,12 +137,30 @@
 
 {% if attribute(data, 'date_created') or attribute(data, 'date_issued') or attribute(data, 'publisher') or attribute(data, 'place_of_publication') %}
 <originInfo>
-{% if attribute(data, 'date_created') %}
+{% if ('?' not in attribute(data, 'date_created')) and ('circa' not in attribute(data, 'date_created')) and ('[' not in attribute(data, 'date_created'))   %} 
 	<dateCreated encoding="w3cdtf" keyDate="yes">{{ data.date_created }}</dateCreated>
 {% endif %}
-{% if attribute(data, 'date_issued') %} 
+{% if '?' in attribute(data, 'date_created') %}
+	<dateCreated encoding="w3cdtf" keyDate="yes" qualifier="questionable">{{ data.date_created|trim('?') }}</dateCreated>
+{% endif %}
+{% if 'circa' in attribute(data, 'date_created') %}
+	<dateCreated encoding="w3cdtf" keyDate="yes" qualifier="approximate">{{ data.date_created|trim('circa') }}</dateCreated>
+{% endif %}
+{% if '[' in attribute(data, 'date_created') %}
+	<dateCreated encoding="w3cdtf" keyDate="yes" qualifier="inferred">{{ data.date_created|trim('[' and ']') }}</dateCreated>
+{% endif %}
+{% if ('?' not in attribute(data, 'date_issued')) and ('circa' not in attribute(data, 'date_issued')) and ('[' not in attribute(data, 'date_issued'))   %} 
 	<dateIssued encoding="w3cdtf" keyDate="yes">{{ data.date_issued }}</dateIssued>
 {% endif %} 
+{% if '?' in attribute(data, 'date_issued') %}
+	<dateIssued encoding="w3cdtf" keyDate="yes" qualifier="questionable">{{ data.date_issued|trim('?') }}</dateIssued>
+{% endif %}
+{% if 'circa' in attribute(data, 'date_issued') %}
+	<dateIssued encoding="w3cdtf" keyDate="yes" qualifier="approximate">{{ data.date_issued|trim('circa') }}</dateIssued>
+{% endif %}
+{% if '[' in attribute(data, 'date_issued') %}
+	<dateIssued encoding="w3cdtf" keyDate="yes" qualifier="inferred">{{ data.date_issued|trim('[' and ']') }}</dateIssued>
+{% endif %}    
 {% if attribute(data, 'publisher') %}
 	<publisher>{{ data.publisher }}</publisher>
 {% endif %} 
@@ -164,13 +182,13 @@
 
 {% if  attribute(data, 'type') %}
 {% for type in attribute(data, 'type')|split (';') %}
-<typeOfResource>{{ data.type }}</typeOfResource>
+<typeOfResource>{{ type|trim|lower }}</typeOfResource>
 {% endfor %}
 {% endif %} 
   
 {% if  attribute(data, 'genre') %}
 {% for genre in attribute(data, 'genre')|split (';') %}
-<genre authority="aat">{{ genre|trim }}</genre>
+<genre authority="aat">{{ genre|trim|lower }}</genre>
 {% endfor %}
 {% endif %} 
   
@@ -190,7 +208,7 @@
 {% if  attribute(data, 'language') %}
 {% for language in attribute(data, 'language')|split (';') %}
 <language>
-	<languageTerm type="code" authority="iso639-2b">{{ language|trim }}</languageTerm>
+	<languageTerm type="code" authority="iso639-2b">{{ language|trim|lower }}</languageTerm>
 </language>
 {% endfor %}
 {% endif %} 
