@@ -4,12 +4,12 @@
 <mods xmlns="http://www.loc.gov/mods/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mods="http://www.loc.gov/mods/v3" xsi:schemaLocation="http://www.loc.gov/mods/v3 http://www.loc.gov/standards/mods/v3/mods-3-4.xsd"> 
   
 <titleInfo>
-	<title>{{ data.title }}</title>
+	<title>{{ data.title|trim }}</title>
 </titleInfo>
 
 {% if  attribute(data, 'personal_name') %}
 {% for name in attribute(data, 'personal_name')|split (';') %}
-<name authority="naf" type="personal">
+<name type="personal">
 	<namePart>{{ name|trim }}</namePart>
 	<role>
 		<roleTerm authority="marcrelator" type="text">{{ data.role }}</roleTerm>
@@ -20,7 +20,7 @@
 
 {% if  attribute(data, 'corporate_name') %}
 {% for name in attribute(data, 'corporate_name')|split (';') %}
-<name authority="naf" type="corporate">
+<name type="corporate">
 	<namePart>{{ name|trim }}</namePart>
 	<role>
 		<roleTerm authority="marcrelator" type="text">{{ data.role }}</roleTerm>
@@ -31,7 +31,7 @@
 
 {% if  attribute(data, 'personal_name_creator') %}
 {% for creator in attribute(data, 'personal_name_creator')|split (';') %}
-<name authority="naf" type="personal">
+<name type="personal">
 	<namePart>{{ creator|trim }}</namePart>
 	<role>
 		<roleTerm authority="marcrelator" type="text">Creator</roleTerm>
@@ -42,7 +42,7 @@
 
 {% if  attribute(data, 'corporate_name_creator') %}
 {% for creator in attribute(data, 'corporate_name_creator')|split (';') %}
-<name authority="naf" type="corporate">
+<name type="corporate">
 	<namePart>{{ creator|trim }}</namePart>
 	<role>
 		<roleTerm authority="marcrelator" type="text">Creator</roleTerm>
@@ -53,7 +53,7 @@
 
 {% if  attribute(data, 'personal_name_contributor') %}
 {% for contributor in attribute(data, 'personal_name_contributor')|split (';') %}
-<name authority="naf" type="personal">
+<name type="personal">
 	<namePart>{{ contributor|trim }}</namePart>
 	<role>
 		<roleTerm authority="marcrelator" type="text">Contributor</roleTerm>
@@ -64,7 +64,7 @@
 
 {% if  attribute(data, 'corporate_name_contributor') %}
 {% for contributor in attribute(data, 'corporate_name_contributor')|split (';') %}
-<name authority="naf" type="corporate">
+<name type="corporate">
 	<namePart>{{ contributor|trim }}</namePart>
 	<role>
 		<roleTerm authority="marcrelator" type="text">Contributor</roleTerm>
@@ -75,7 +75,7 @@
 
 {% if  attribute(data, 'subject_topic') %}
 {% for topic in attribute(data, 'subject_topic')|split (';') %}
-<subject authority="fast">
+<subject>
 	<topic>{{ topic|trim }}</topic>
 </subject>
 {% endfor %}
@@ -83,7 +83,7 @@
 
 {% if  attribute(data, 'location') %}
 {% for geographic in attribute(data, 'location')|split (';') %}
-<subject authority="fast">
+<subject>
 	<geographic>{{ geographic|trim }}</geographic>
 </subject>
 {% endfor %}
@@ -91,7 +91,7 @@
 
 {% if  attribute(data, 'time_period') %}
 {% for temporal in attribute(data, 'time_period')|split (';') %}
-<subject authority="fast">
+<subject>
 	<temporal>{{ temporal|trim }}</temporal>
 </subject>
 {% endfor %}
@@ -99,7 +99,7 @@
 
 {% if  attribute(data, 'subject_name') %}
 {% for subjectname in attribute(data, 'subject_name')|split (';') %}
-<subject authority="fast">
+<subject>
 	<name>
 		<namePart>{{ subjectname|trim }}</namePart>
 	</name>
@@ -109,7 +109,7 @@
 
 {% if  attribute(data, 'subject_personal_name') %}
 {% for subjectname in attribute(data, 'subject_personal_name')|split (';') %}
-<subject authority="fast">
+<subject>
 	<name type="personal">
 		<namePart>{{ subjectname|trim }}</namePart>
 	</name>
@@ -119,7 +119,7 @@
 
 {% if  attribute(data, 'subject_corporate_name') %}
 {% for subjectname in attribute(data, 'subject_corporate_name')|split (';') %}
-<subject authority="fast">
+<subject>
 	<name type="corporate">
 		<namePart>{{ subjectname|trim }}</namePart>
 	</name>
@@ -173,11 +173,11 @@
 {% endif %} 
 
 {% if attribute(data, 'description') %}
-<abstract>{{ data.description }}</abstract>
+<abstract>{{ data.description|trim }}</abstract>
 {% endif %} 
 
 {% if attribute(data, 'note') %}
-<note>{{ data.note }}</note>
+<note>{{ data.note|trim }}</note>
 {% endif %} 
 
 {% if  attribute(data, 'type') %}
@@ -188,20 +188,20 @@
   
 {% if  attribute(data, 'genre') %}
 {% for genre in attribute(data, 'genre')|split (';') %}
-<genre authority="aat">{{ genre|trim|lower }}</genre>
+<genre>{{ genre|trim }}</genre>
 {% endfor %}
 {% endif %} 
   
 {% if attribute(data, 'extent') or attribute(data, 'form') or attribute(data, 'digital_format') or attribute(data, 'digital_origin') %}
 <physicalDescription>
 	{% if attribute(data, 'form') %}
-	<form>{{ data.form }}</form>
+	<form>{{ data.form|trim }}</form>
 	{% endif %} 
 	{% if attribute(data, 'extent') %}
-    <extent>{{ data.extent }}</extent>
+    <extent>{{ data.extent|trim }}</extent>
 	{% endif %} 
-    <internetMediaType>{{ data.digital_format }}</internetMediaType>
-    <digitalOrigin>{{ data.digital_origin }}</digitalOrigin>
+    <internetMediaType>{{ data.digital_format|trim|lower }}</internetMediaType>
+    <digitalOrigin>{{ data.digital_origin|trim|lower }}</digitalOrigin>
 </physicalDescription>
 {% endif %} 
 
@@ -216,26 +216,26 @@
 {% if attribute(data, 'related_resource') %}
 <relatedItem>
 	<titleInfo>
-		<title>{{ data.related_resource }}</title>
+		<title>{{ data.related_resource|trim }}</title>
 	</titleInfo>
 </relatedItem>
 {% endif %} 
 
 <relatedItem type="host" displayLabel="Collection">
 	<titleInfo>
-      <title>{{ data.collection }}</title>
+      <title>{{ data.collection|trim }}</title>
     </titleInfo>
 </relatedItem>
 
 {% if attribute(data, 'collection_description') %}  
 <relatedItem type="host" displayLabel="Collection">
-    <abstract>{{ data.collection_description }}</abstract>
+    <abstract>{{ data.collection_description|trim }}</abstract>
 </relatedItem>
 {% endif %} 
   
-<accessCondition>{{ data.rights }}</accessCondition>
-<note type="ownership">{{ data.owning_institution }}</note>
-<identifier type="local">{{ data.identifier }}</identifier>
+<accessCondition>{{ data.rights|trim }}</accessCondition>
+<note type="ownership">{{ data.owning_institution|trim }}</note>
+<identifier type="local">{{ data.identifier|trim }}</identifier>
 
 <recordInfo>
 	<languageOfCataloging>
