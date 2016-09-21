@@ -4,7 +4,7 @@
 <mods xmlns="http://www.loc.gov/mods/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mods="http://www.loc.gov/mods/v3" xsi:schemaLocation="http://www.loc.gov/mods/v3 http://www.loc.gov/standards/mods/v3/mods-3-4.xsd"> 
   
 <titleInfo>
-	<title>{{ data.title|trim }}</title>
+	<title>{{ data.title|trim|escape }}</title>
 </titleInfo>
 
 {% if  attribute(data, 'personal_name') %}
@@ -173,11 +173,11 @@
 {% endif %} 
 
 {% if attribute(data, 'description') %}
-<abstract>{{ data.description|trim }}</abstract>
+<abstract>{{ data.description|trim|escape }}</abstract>
 {% endif %} 
 
 {% if attribute(data, 'note') %}
-<note>{{ data.note|trim }}</note>
+<note>{{ data.note|trim|escape }}</note>
 {% endif %} 
 
 {% if  attribute(data, 'type') %}
@@ -233,8 +233,8 @@
 </relatedItem>
 {% endif %} 
   
-<accessCondition>{{ data.rights|trim }}</accessCondition>
-<note type="ownership">{{ data.owning_institution|trim }}</note>
+<accessCondition>{{ data.rights|trim|escape }}</accessCondition>
+<note type="ownership">{{ data.owning_institution|trim|escape }}</note>
 <identifier type="local">{{ data.identifier|trim }}</identifier>
 
 <recordInfo>
