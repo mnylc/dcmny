@@ -7,7 +7,7 @@
 	<title>{{ data.title|trim|escape }}</title>
 </titleInfo>
 
-{% if  attribute(data, 'personal_name') %}
+{% if attribute(data, 'personal_name') %}
 {% for name in attribute(data, 'personal_name')|split (';') %}
 <name type="personal">
 	<namePart>{{ name|trim }}</namePart>
@@ -18,7 +18,7 @@
 {% endfor %}
 {% endif %}
 
-{% if  attribute(data, 'corporate_name') %}
+{% if attribute(data, 'corporate_name') %}
 {% for name in attribute(data, 'corporate_name')|split (';') %}
 <name type="corporate">
 	<namePart>{{ name|trim }}</namePart>
@@ -29,7 +29,7 @@
 {% endfor %}
 {% endif %}
 
-{% if  attribute(data, 'personal_name_creator') %}
+{% if attribute(data, 'personal_name_creator') %}
 {% for creator in attribute(data, 'personal_name_creator')|split (';') %}
 <name type="personal">
 	<namePart>{{ creator|trim }}</namePart>
@@ -40,7 +40,7 @@
 {% endfor %}
 {% endif %}
 
-{% if  attribute(data, 'corporate_name_creator') %}
+{% if attribute(data, 'corporate_name_creator') %}
 {% for creator in attribute(data, 'corporate_name_creator')|split (';') %}
 <name type="corporate">
 	<namePart>{{ creator|trim }}</namePart>
@@ -51,7 +51,7 @@
 {% endfor %}
 {% endif %}
 
-{% if  attribute(data, 'personal_name_contributor') %}
+{% if attribute(data, 'personal_name_contributor') %}
 {% for contributor in attribute(data, 'personal_name_contributor')|split (';') %}
 <name type="personal">
 	<namePart>{{ contributor|trim }}</namePart>
@@ -62,7 +62,7 @@
 {% endfor %}
 {% endif %}
 
-{% if  attribute(data, 'corporate_name_contributor') %}
+{% if attribute(data, 'corporate_name_contributor') %}
 {% for contributor in attribute(data, 'corporate_name_contributor')|split (';') %}
 <name type="corporate">
 	<namePart>{{ contributor|trim }}</namePart>
@@ -73,7 +73,7 @@
 {% endfor %}
 {% endif %}
 
-{% if  attribute(data, 'subject_topic') %}
+{% if attribute(data, 'subject_topic') %}
 {% for topic in attribute(data, 'subject_topic')|split (';') %}
 <subject>
 	<topic>{{ topic|trim }}</topic>
@@ -81,7 +81,7 @@
 {% endfor %}
 {% endif %}
 
-{% if  attribute(data, 'location') %}
+{% if attribute(data, 'location') %}
 {% for geographic in attribute(data, 'location')|split (';') %}
 <subject>
 	<geographic>{{ geographic|trim }}</geographic>
@@ -89,7 +89,7 @@
 {% endfor %}
 {% endif %}
 
-{% if  attribute(data, 'time_period') %}
+{% if attribute(data, 'time_period') %}
 {% for temporal in attribute(data, 'time_period')|split (';') %}
 <subject>
 	<temporal>{{ temporal|trim }}</temporal>
@@ -97,7 +97,7 @@
 {% endfor %}
 {% endif %}
 
-{% if  attribute(data, 'subject_name') %}
+{% if attribute(data, 'subject_name') %}
 {% for subjectname in attribute(data, 'subject_name')|split (';') %}
 <subject>
 	<name>
@@ -107,7 +107,7 @@
 {% endfor %}
 {% endif %} 
 
-{% if  attribute(data, 'subject_personal_name') %}
+{% if attribute(data, 'subject_personal_name') %}
 {% for subjectname in attribute(data, 'subject_personal_name')|split (';') %}
 <subject>
 	<name type="personal">
@@ -117,7 +117,7 @@
 {% endfor %}
 {% endif %} 
 
-{% if  attribute(data, 'subject_corporate_name') %}
+{% if attribute(data, 'subject_corporate_name') %}
 {% for subjectname in attribute(data, 'subject_corporate_name')|split (';') %}
 <subject>
 	<name type="corporate">
@@ -127,7 +127,7 @@
 {% endfor %}
 {% endif %} 
 
-{% if  attribute(data, 'coordinates') %}
+{% if attribute(data, 'coordinates') %}
 <subject>
 	<cartographics>
 		<coordinates>{{ data.coordinates }}</coordinates>
@@ -180,13 +180,13 @@
 <note>{{ data.note|trim|escape }}</note>
 {% endif %} 
 
-{% if  attribute(data, 'type') %}
+{% if attribute(data, 'type') %}
 {% for type in attribute(data, 'type')|split (';') %}
 <typeOfResource>{{ type|trim|lower }}</typeOfResource>
 {% endfor %}
 {% endif %} 
   
-{% if  attribute(data, 'genre') %}
+{% if attribute(data, 'genre') %}
 {% for genre in attribute(data, 'genre')|split (';') %}
 <genre>{{ genre|trim }}</genre>
 {% endfor %}
@@ -205,7 +205,7 @@
 </physicalDescription>
 {% endif %} 
 
-{% if  attribute(data, 'language') %}
+{% if attribute(data, 'language') %}
 {% for language in attribute(data, 'language')|split (';') %}
 <language>
 	<languageTerm type="code" authority="iso639-2b">{{ language|trim|lower }}</languageTerm>
