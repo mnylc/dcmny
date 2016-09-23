@@ -6,6 +6,7 @@
   <xsl:output indent="no"/>
 
   <!-- the well-known identity transform. -->
+  
   <xsl:template match="node()|@*">
     <xsl:copy>
       <xsl:apply-templates select="node()|@*"/>
@@ -13,6 +14,7 @@
   </xsl:template>
 
   <!-- Don't emit anything whose text value is the word 'null.' -->
+  
   <xsl:template match="mods:subject[mods:name/mods:namePart[text()='null']]"/>
   <xsl:template match="mods:subject[./mods:topic[./text()='null']]"/>
   <xsl:template match="mods:subject[mods:geographic[text()='null']]"/>
@@ -72,8 +74,6 @@
     </xsl:for-each>
   </xsl:template>
   
-  
-
   <xsl:template match="mods:subject[./mods:geographic[not(contains(./text(), 'null'))]]">
       <xsl:variable name="topiclist" select="tokenize(replace(., '&quot;', ''), ';')"/>
       <xsl:for-each select="$topiclist">
@@ -117,7 +117,6 @@
       </xsl:with-param>
     </xsl:call-template>
   </xsl:template>
-  
   
   <xsl:template name="date-to-mods">
     <xsl:param name="dateval"/>
@@ -238,6 +237,7 @@
   </xsl:template>
   
   <!-- determine qualifier attribute for date element. -->
+  
   <xsl:template name="datequal">
     <xsl:param name="dateval"/>
     <xsl:choose>
@@ -255,11 +255,10 @@
   </xsl:template>
   
   <!-- strip superfluous characters from date once it's been qualified -->
+  
   <xsl:template name="clean-date">
     <xsl:param name="dateval"/>
     <xsl:value-of select="replace($dateval, '[^0-9\-/]', '')"/>
   </xsl:template>
-
-
 
 </xsl:stylesheet>
