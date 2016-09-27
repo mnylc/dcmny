@@ -101,7 +101,7 @@
 {% for subjectname in attribute(data, 'subject_name')|split (';') %}
 <subject>
 	<name>
-		<namePart>{{ subjectname|trim }}</namePart>
+		<namePart>{{ subjectname|trim|escape }}</namePart>
 	</name>
 </subject>
 {% endfor %}
@@ -111,7 +111,7 @@
 {% for subjectname in attribute(data, 'subject_personal_name')|split (';') %}
 <subject>
 	<name type="personal">
-		<namePart>{{ subjectname|trim }}</namePart>
+		<namePart>{{ subjectname|trim|escape }}</namePart>
 	</name>
 </subject>
 {% endfor %}
@@ -121,7 +121,7 @@
 {% for subjectname in attribute(data, 'subject_corporate_name')|split (';') %}
 <subject>
 	<name type="corporate">
-		<namePart>{{ subjectname|trim }}</namePart>
+		<namePart>{{ subjectname|trim|escape }}</namePart>
 	</name>
 </subject>
 {% endfor %}
@@ -130,7 +130,7 @@
 {% if attribute(data, 'coordinates') %}
 <subject>
 	<cartographics>
-		<coordinates>{{ data.coordinates }}</coordinates>
+		<coordinates>{{ data.coordinates|trim }}</coordinates>
 	</cartographics>
 </subject> 
 {% endif %}  
@@ -162,11 +162,11 @@
 	<dateIssued encoding="w3cdtf" keyDate="yes" qualifier="inferred">{{ data.date_issued|trim('[' and ']') }}</dateIssued>
 {% endif %}    
 {% if attribute(data, 'publisher') %}
-	<publisher>{{ data.publisher }}</publisher>
+	<publisher>{{ data.publisher|trim|escape }}</publisher>
 {% endif %} 
 {% if attribute(data, 'place_of_publication') %}
     <place>
-      <placeTerm type="text">{{ data.place_of_publication }}</placeTerm>
+      <placeTerm type="text">{{ data.place_of_publication|trim }}</placeTerm>
     </place>
 {% endif %} 
 </originInfo>
@@ -216,20 +216,20 @@
 {% if attribute(data, 'related_resource') %}
 <relatedItem>
 	<titleInfo>
-		<title>{{ data.related_resource|trim }}</title>
+		<title>{{ data.related_resource|trim|escape }}</title>
 	</titleInfo>
 </relatedItem>
 {% endif %} 
 
 <relatedItem type="host" displayLabel="Collection">
 	<titleInfo>
-      <title>{{ data.collection|trim }}</title>
+      <title>{{ data.collection|trim|escape }}</title>
     </titleInfo>
 </relatedItem>
 
 {% if attribute(data, 'collection_description') %}  
 <relatedItem type="host" displayLabel="Collection">
-    <abstract>{{ data.collection_description|trim }}</abstract>
+    <abstract>{{ data.collection_description|trim|escape }}</abstract>
 </relatedItem>
 {% endif %} 
   
