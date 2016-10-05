@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+{% block content %}
+{% autoescape false %}
+<mods xmlns="http://www.loc.gov/mods/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mods="http://www.loc.gov/mods/v3" xsi:schemaLocation="http://www.loc.gov/mods/v3 http://www.loc.gov/standards/mods/v3/mods-3-4.xsd"> 
+  
+<titleInfo>
+	<title>{{ data.title|trim|escape }}</title>
+</titleInfo>
+
+{% if attribute(data, 'subject_personal_name') %}
+{% for subjectname in attribute(data, 'subject_personal_name')|split (';') %}
+<subject>
+	<name type="personal">
+		<namePart>{{ subjectname|trim|escape }}</namePart>
+	</name>
+</subject>
+{% endfor %}
+{% endif %}  
+
+{% if attribute(data, 'date_created') or attribute(data, 'date_issued') or attribute(data, 'publisher') or attribute(data, 'place_of_publication') %}
+<originInfo>
+{% if ('?' not in attribute(data, 'date_created')) and ('circa' not in attribute(data, 'date_created')) and ('[' not in attribute(data, 'date_created'))   %} 
+	<dateCreated encoding="w3cdtf" keyDate="yes">{{ data.date_created }}</dateCreated>
+{% endif %}
+{% if '?' in attribute(data, 'date_created') %}
+	<dateCreated encoding="w3cdtf" keyDate="yes" qualifier="questionable">{{ data.date_created|trim('?') }}</dateCreated>
+{% endif %}
+{% if 'circa' in attribute(data, 'date_created') %}
+	<dateCreated encoding="w3cdtf" keyDate="yes" qualifier="approximate">{{ data.date_created|trim('circa') }}</dateCreated>
+{% endif %}
+{% if '[' in attribute(data, 'date_created') %}
+	<dateCreated encoding="w3cdtf" keyDate="yes" qualifier="inferred">{{ data.date_created|trim('[' and ']') }}</dateCreated>
+{% endif %} 
+{% if attribute(data, 'date_digital') %}
+	<dateCaptured encoding="w3cdtf">{{ data.date_digital|trim|escape }}</dateCaptured>
+{% endif %} 
+{% if attribute(data, 'publisher') %}
+	<publisher>{{ data.publisher|trim|escape }}</publisher>
+{% endif %} 
+</originInfo>
+{% endif %} 
+
+{% if attribute(data, 'description') %}
+<abstract>{{ data.description|trim|escape }}</abstract>
+{% endif %} 
+
+{% if attribute(data, 'note') %}
+<note>{{ data.note|trim|escape }}</note>
+{% endif %} 
+
+{% if attribute(data, 'type') %}
+{% for type in attribute(data, 'type')|split (';') %}
+<typeOfResource>{{ type|trim|lower }}</typeOfResource>
+{% endfor %}
+{% endif %} 
+  
+{% if attribute(data, 'genre') %}
+{% for genre in attribute(data, 'genre')|split (';') %}
+<genre authority="aat">{{ genre|trim }}</genre>
+{% endfor %}
+{% endif %} 
+  
+{% if attribute(data, 'extent') or attribute(data, 'form') or attribute(data, 'digital_format') or attribute(data, 'digital_origin') %}
+<physicalDescription>
+	{% if attribute(data, 'form') %}
+	<form>{{ data.form|trim }}</form>
+	{% endif %} 
+	{% if attribute(data, 'extent') %}
+    <extent>{{ data.extent|trim }}</extent>
+	{% endif %} 
+    <internetMediaType>{{ data.digital_format|trim|lower }}</internetMediaType>
+    <digitalOrigin>{{ data.digital_origin|trim|lower }}</digitalOrigin>
+</physicalDescription>
+{% endif %} 
+
+{% if attribute(data, 'language') %}
+{% for language in attribute(data, 'language')|split (';') %}
+<language>
+	<languageTerm type="code" authority="iso639-2b">{{ language|trim|lower }}</languageTerm>
+</language>
+{% endfor %}
+{% endif %} 
+
+{% if attribute(data, 'related_resource') %}
+<relatedItem>
+	<titleInfo>
+		<title>{{ data.related_resource|trim|escape }}</title>
+	</titleInfo>
+</relatedItem>
+{% endif %} 
+
+<relatedItem type="host" displayLabel="Collection">
+	<titleInfo>
+      <title>{{ data.collection|trim|escape }}</title>
+    </titleInfo>
+</relatedItem>
+
+{% if attribute(data, 'collection_description') %}  
+<relatedItem type="host" displayLabel="Collection">
+    <abstract>{{ data.collection_description|trim|escape }}</abstract>
+</relatedItem>
+{% endif %} 
+
+
+<accessCondition type="use and reproduction" xlink="{{ data.rights_uri|trim|escape }}">{{ data.rights_text|trim|escape }}</accessCondition>   
+<note type="ownership">{{ data.owning_institution|trim|escape }}</note>
+<identifier type="local">{{ data.identifier|trim('.jp2') }}</identifier>
+
+<recordInfo>
+	<languageOfCataloging>
+		<languageTerm authority="iso639-2b" type="code">eng</languageTerm>
+    </languageOfCataloging>
+</recordInfo>
+</mods>
+{% endautoescape %}
+{% endblock %}
