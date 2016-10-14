@@ -102,7 +102,7 @@
 {% endif %} 
 
 
-<accessCondition type="use and reproduction" xlink="{{ data.rights_uri|trim|escape }}">{{ data.rights_text|trim|escape }}</accessCondition>   
+<accessCondition type="use and reproduction" xlink:href="{{ data.rights_uri|trim|escape }}">{{ data.rights_text|trim|escape }}</accessCondition>   
 <note type="ownership">{{ data.owning_institution|trim|escape }}</note>
 <identifier type="local">{{ data.identifier|trim('.jp2') }}</identifier>
 
