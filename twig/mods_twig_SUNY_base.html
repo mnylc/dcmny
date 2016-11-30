@@ -82,11 +82,11 @@
 {% endif %} 
 
 {% if attribute(data, 'related_resource') %}
+{% for related_resource in attribute(data, 'related_resource')|split (';') %}
 <relatedItem>
-	<titleInfo>
-		<title>{{ data.related_resource|trim|escape }}</title>
-	</titleInfo>
+		<identifier>{{ related_resource|trim }}</identifier>
 </relatedItem>
+{% endfor %}
 {% endif %} 
 
 <relatedItem type="host" displayLabel="Collection">
